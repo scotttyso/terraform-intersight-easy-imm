@@ -55,6 +55,7 @@ policies_vlan = {
     auto_allow_on_uplinks = true
     description           = ""
     multicast_policy      = "Asgard_multicast"
+    organization          = "Asgard"
     vlan_list             = "101-199,201-299,1100-1299,1700-1799"
     vlan_native           = 1
     vlan_prefix           = "asgard-"
