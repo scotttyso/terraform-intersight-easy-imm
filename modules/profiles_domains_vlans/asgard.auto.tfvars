@@ -4,7 +4,7 @@
 #__________________________________________________________
 
 tfc_organization = "Cisco-Richfield-Lab"
-ws_domain        = "Asgard-domain_profiles"
+ws_domain        = "Asgard_domain_profiles"
 
 #__________________________________________________________
 #
@@ -13,6 +13,8 @@ ws_domain        = "Asgard-domain_profiles"
 
 # endpoint     = "https://intersight.com"
 organizations = ["Asgard"]
+
+
 # secretkey    = "../../../../intersight.secret"
 /*
   To export the Secret Key via an Environment Variable the format is as follows (Note: they are not quotation marks, but escape characters):
