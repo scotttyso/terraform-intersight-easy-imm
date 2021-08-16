@@ -72,6 +72,7 @@ ucs_domain_profiles = {
     policies_switch_control       = "Asgard_swctrl"
     policies_syslog               = "Asgard_sw_syslog"
     policies_system_qos           = "Asgard_sytemqos"
+    policies_vlan                 = "Asgard_vlangroup_1"
     port_policy_descr_a           = ""
     port_policy_descr_b           = ""
     san_fill_pattern              = "Arbff"
