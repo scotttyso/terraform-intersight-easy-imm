@@ -53,16 +53,8 @@ tags = [{ key = "Module", value = "terraform-intersight-easy-imm" }, { key = "Ow
 # UCS Domain Profile Variables
 #______________________________________________
 
-ucs_domain_profiles = {
-  asgard-ucs = {
-    assign_switches               = true
-    action                        = "No-op" # Options are {Delete|Deploy|Ready|No-op|Unassign}.
-    device_model                  = "UCS-FI-64108"
-    domain_description            = ""
-    domain_descr_fi_a             = ""
-    domain_descr_fi_b             = ""
-    domain_serial_a               = "FDO23360Y8U"
-    domain_serial_b               = "FDO23360XWU"
+ucs_domain_templates = {
+  Asgard_base = {
     fc_ports                      = [1, 4]
     fc_slot_id                    = 1
     organization                  = "Asgard"
@@ -73,18 +65,11 @@ ucs_domain_profiles = {
     policies_syslog               = "Asgard_sw_syslog"
     policies_system_qos           = "Asgard_sytemqos"
     policies_vlan                 = "Asgard_vlangroup_1"
-    port_policy_descr_a           = ""
-    port_policy_descr_b           = ""
     san_fill_pattern              = "Arbff"
     san_pc_breakoutswport         = 0
     san_pc_ports                  = [1, 3]
     san_pc_slot_id                = 1
     san_pc_speed                  = "16Gbps"
-    server_ports                  = "5-18"
-    tags                          = []
-    vlan_description              = ""
-    vlan_native                   = 1
-    vlan_list                     = "101-199,201-299,1100-1299,1700-1799"
     vsan_a                        = 100
     vsan_a_description            = ""
     vsan_a_fcoe                   = null
@@ -93,6 +78,24 @@ ucs_domain_profiles = {
     vsan_b_fcoe                   = null
     vsan_enable_trunking          = false
     vsan_prefix                   = ""
+  }
+}
+
+ucs_domain_profiles = {
+  asgard-ucs = {
+    assign_switches               = true
+    action                        = "No-op" # Options are {Delete|Deploy|Ready|No-op|Unassign}.
+    device_model                  = "UCS-FI-64108"
+    domain_description            = ""
+    domain_descr_fi_a             = ""
+    domain_descr_fi_b             = ""
+    domain_serial_a               = "FDO23360Y8U"
+    domain_serial_b               = "FDO23360XWU"
+    port_policy_descr_a           = ""
+    port_policy_descr_b           = ""
+    server_ports                  = "5-18"
+    src_template                  = "Asgard_base"
+    tags                          = []
   }
 }
 
