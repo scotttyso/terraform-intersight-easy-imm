@@ -149,7 +149,7 @@ policies_power = {
 #______________________________________________
 
 policies_snmp = {
-  "Asgard_snmp" = {
+  "Asgard_snmp_chassis" = {
     description                = ""
     enabled                    = true
     organization               = "Asgard"
