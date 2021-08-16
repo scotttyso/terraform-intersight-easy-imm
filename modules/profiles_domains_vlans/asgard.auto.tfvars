@@ -58,7 +58,7 @@ policies_vlan = {
     organization          = "Asgard"
     vlan_list             = "101-199,201-299,1100-1299,1700-1799"
     vlan_native           = 1
-    vlan_prefix           = "asgard-"
+    vlan_prefix           = "asgard"
     vlan_map = [
       {
         prefix  = "mgmt"
