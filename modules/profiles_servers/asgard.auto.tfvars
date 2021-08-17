@@ -76,7 +76,7 @@ ucs_server_templates = {
     policies_local_users      = "Asgard_users"
     policies_power            = "Asgard_power_server"
     policies_san_connectivity = "Asgard_san"
-    policies_sdcard           = ""
+    policies_sd_card          = "Asgard_sdcard_m5"
     policies_serial_over_lan  = "Asgard_sol"
     policies_snmp             = "Asgard_snmp"
     policies_storage          = "Asgard_Raid1"
@@ -98,7 +98,7 @@ ucs_server_templates = {
     policies_local_users      = "Asgard_users"
     policies_power            = "Asgard_power_server" # FIAttached Only
     policies_san_connectivity = "Asgard_san"
-    policies_sdcard           = ""
+    policies_sd_card          = "Asgard_sdcard_m5"
     policies_serial_over_lan  = "Asgard_sol"
     policies_snmp             = "Asgard_snmp"
     policies_storage          = "Asgard_Raid1"
@@ -406,6 +406,24 @@ policies_power = {
   }
 }
 
+
+#______________________________________________
+#
+# SD Card Policies
+#______________________________________________
+
+policies_sd_card = {
+  "Asgard_sdcard_m5" = {
+    description = ""
+    enable_diagnostics = false
+    enable_drivers = false
+    enable_huu = true
+    enable_os = true
+    enable_scu = true
+    organization = "Asgard"
+    tags = []
+  }
+}
 
 #______________________________________________
 #
