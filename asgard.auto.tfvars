@@ -7,7 +7,7 @@
 # tfc_email         = "tyscott@cisco.com"
 terraform_version = "1.0.3"
 tfc_organization  = "Cisco-Richfield-Lab"
-vcs_repo          = "scotttyso/Asgard"
+vcs_repo          = "scotttyso/terraform-intersight-easy-imm"
 
 #__________________________________________________________
 #
