@@ -154,7 +154,7 @@ mac_pools = {
 
 uuid_pools = {
   Asgard_uuid_pool = {
-    assignment_order = "sequential"
+    assignment_order = "default"
     organization     = "Asgard"
     # prefix           = "" # Accepting Default Value
     # uuid_suffix_blocks = [] # Accepting Default Values
