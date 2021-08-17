@@ -83,7 +83,7 @@ ucs_domain_templates = {
 
 ucs_domain_profiles = {
   asgard-ucs = {
-    assign_switches               = true
+    assign_switches               = false
     action                        = "No-op" # Options are {Delete|Deploy|Ready|No-op|Unassign}.
     device_model                  = "UCS-FI-64108"
     domain_description            = ""
