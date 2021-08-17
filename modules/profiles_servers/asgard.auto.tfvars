@@ -128,15 +128,15 @@ ucs_server_profiles = {
     tags                = []
     wait_for_completion = false
   }
-  FCH21427CHB = {
-    action              = "No-op" # Options are {Delete|Deploy|Ready|No-op|Unassign}.
-    assign_server       = false
-    description         = ""
-    name                = "asgard-lnx01" # If Name is not specified the Serial Will be assigned as the Hostname
-    src_template        = "Asgard_Linux_NVMe"
-    tags                = [{ key = "Module", value = "Easy IMM" }, { key = "Install OS", value = "Linux" }]
-    wait_for_completion = false
-  }
+  # FCH21427CHB = {
+  #   action              = "No-op" # Options are {Delete|Deploy|Ready|No-op|Unassign}.
+  #   assign_server       = false
+  #   description         = ""
+  #   name                = "asgard-lnx01" # If Name is not specified the Serial Will be assigned as the Hostname
+  #   src_template        = "Asgard_Linux_NVMe"
+  #   tags                = [{ key = "Module", value = "Easy IMM" }, { key = "Install OS", value = "Linux" }]
+  #   wait_for_completion = false
+  # }
 }
 
 
