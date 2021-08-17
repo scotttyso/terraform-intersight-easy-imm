@@ -130,7 +130,7 @@ ucs_server_profiles = {
   }
   FCH21427CHB = {
     action              = "No-op" # Options are {Delete|Deploy|Ready|No-op|Unassign}.
-    assign_server       = true
+    assign_server       = false
     description         = ""
     name                = "asgard-lnx01" # If Name is not specified the Serial Will be assigned as the Hostname
     src_template        = "Asgard_Linux_NVMe"
