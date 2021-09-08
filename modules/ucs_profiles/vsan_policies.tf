@@ -68,7 +68,7 @@ module "vsan_policies" {
     local.org_moids,
     module.ucs_domain_switches
   ]
-  source          = "../../../terraform-intersight-imm/modules/vsan_policies"
+  source          = "terraform-cisco-modules/imm/intersight//modules/vsan_policies"
   for_each        = var.vsan_policies
   description     = each.value.description != "" ? each.value.description : "${each.key} VSAN Policy."
   uplink_trunking = each.value.uplink_trunking
@@ -94,7 +94,7 @@ module "vsan_policies_add_vsans" {
     local.org_moids,
     module.vsan_policies
   ]
-  source           = "../../../terraform-intersight-imm/modules/vsan_policy_add_vsan"
+  source           = "terraform-cisco-modules/imm/intersight//modules/vsan_policy_add_vsan"
   for_each         = toset(keys({ for k, v in local.vsans : k => v }))
   default_zoning   = local.vsans[each.value].default_zoning
   fcoe_vlan_id     = local.vsans[each.value].fcoe_vlan_id
