@@ -27,6 +27,29 @@ ip_pools = {
     organization = "Asgard"
     tags         = []
   }
+  Asgard_ip_pool_2 = {
+    assignment_order = "sequential"
+    ipv4_block = [
+      {
+        from = "10.92.111.96"
+        to   = "10.92.111.127"
+      },
+      {
+        from = "10.92.111.128"
+        to   = "10.92.111.163"
+      }
+    ]
+    ipv4_config = {
+      config = {
+        gateway       = "10.92.111.1"
+        netmask       = "255.255.255.0"
+        primary_dns   = "10.101.128.15"
+        secondary_dns = "10.101.128.16"
+      }
+    }
+    organization = "Asgard"
+    tags         = []
+  }
   "ext-mgmt-ipblock2" = {
     ipv4_block = [
       {
