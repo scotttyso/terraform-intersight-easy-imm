@@ -21,28 +21,16 @@ workspaces = {
     working_directory = "modules/pools"
     workspace_type    = "pool"
   }
-  "Asgard_chassis_profiles" = {
+  "Asgard_ucs_profiles" = {
     auto_apply        = true
-    description       = "Asgard UCS Chassis Profiles."
-    working_directory = "modules/profiles_chassis"
-    workspace_type    = "chassis"
-  }
-  "Asgard_domain" = {
-    auto_apply        = true
-    description       = "Asgard UCS Domain Profile."
-    working_directory = "modules/profiles_domains"
-    workspace_type    = "domain"
+    description       = "Asgard UCS Profiles."
+    working_directory = "modules/ucs_profiles"
+    workspace_type    = "profiles"
   }
   "Asgard_domain_vlans" = {
     auto_apply        = true
     description       = "Asgard UCS Domain VLANs."
-    working_directory = "modules/profiles_domains_vlans"
+    working_directory = "modules/ucs_domain_profiles_vlans"
     workspace_type    = "vlan"
-  }
-  "Asgard_server_profiles" = {
-    auto_apply        = true
-    description       = "Asgard UCS Server Profiles."
-    working_directory = "modules/profiles_servers"
-    workspace_type    = "server"
   }
 }
