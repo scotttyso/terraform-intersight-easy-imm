@@ -3,10 +3,12 @@
 ## Use Cases
 
 * Build Workspaces in TFCB to support Infrastructure as Code Provisioning.
-* Use TFCB to provision Intersight Pools.
-* Use TFCB to provision Intersight IMM Policies.
-* Use TFCB to provision UCS Domains in IMM Mode.
-* Use TFCB to provision UCS Server Profiles in IMM Mode.
+* Use Terraform/TFCB to provision Intersight Pools.
+* Use Terraform/TFCB to provision Intersight UCS Policies.
+* Use Terraform/TFCB to provision UCS Chassis Profiles in IMM Mode.
+* Use Terraform/TFCB to provision UCS Domains in IMM Mode.
+* Use Terraform/TFCB to provision UCS Server Profiles in IMM Mode.
+* Use Terraform/TFCB to provision Operation Systems on Baremetal UCS Servers.
 
 ### Pools - module/pools
 
@@ -16,32 +18,31 @@
 * MAC Pools
 * UUID Pools
 
-### Domain Policies - module/domains and module/domain_vlans
+### Domain Policies
 
-* Ethernet Network Control (CDP/LLDP)
-* Ethernet Network Group (VLAN Groups)
-* Flow Control
-* Link Aggregation
-* Link Control
-* Multicast
-* Network Connectivity (DNS)
-* NTP
-* Port
-* SNMP
-* Switch Control
-* Syslog
-* System QoS
-* VLAN
-* VSAN
+* Ethernet Network Control (CDP/LLDP) - module/policies
+* Ethernet Network Group (VLAN Groups) - module/policies
+* Flow Control - module/policies
+* Link Aggregation - module/policies
+* Link Control - module/policies
+* Multicast - module/policies_vlans
+* Network Connectivity (DNS) - module/policies
+* NTP - module/policies
+* Port - module/policies
+* SNMP - module/policies
+* Switch Control - module/policies
+* Syslog - module/policies
+* System QoS - module/policies
+* VLAN - module/policies_vlans
+* VSAN - module/policies
 
-### Server Policies - module/policies
+### Chassis/Server Policies - module/policies
 
 * Adapter Configuration (Standalone Servers)
 * BIOS
 * Boot Order
 * Certificate Management (under development)
 * Device Connector
-* Disk Group
 * Ethernet Adapter (vnIC Adapter Policy)
 * Ethernet Network (Standalone Servers)
 * Ethernet Network Control (CDP/LLDP)
@@ -70,8 +71,21 @@
 * SSH
 * Storage
 * Syslog
+* Thermal
 * Virtual KVM
 * Virtual Media
+
+### UCS Chassis Profiles - module/ucs_chassis_profiles
+
+* ucs_chassis_profiles
+
+### UCS Domain Profiles - module/ucs_domain_profiles
+
+* ucs_domain_profiles
+
+### UCS Server Profiles - module/ucs_server_profiles
+
+* ucs_server_profiles
 
 ### Pre-requisites and Guidelines
 
@@ -131,24 +145,82 @@ export TF_VAR_apikey="your_api_key"
 export TF_VAR_secretkey=`../../../../intersight_secretkey.txt`
 ```
 
-### SNMP Secure Variables
+### IPMI over LAN Secure Variables
 
-Use the following environment variables based on your deployment for SNMP Settings
+Use the following environment variable, based on your deployment, for IPMI over LAN Settings if you want to configure encryption for the IPMI communication.
 
-* SNMP User Attributes
+* IPMI over LAN Encryption Key
 
 ```bash
-export TF_VAR_snmp_user_1_auth_password="your_password"
-export TF_VAR_snmp_user_1_privacy_password="your_password"
-export TF_VAR_snmp_user_2_auth_password="your_password"
-export TF_VAR_snmp_user_2_privacy_password="your_password"
+export TF_VAR_ipmi_key_1="your_password"
+```
+
+### LDAP Secure Variables
+
+Use the following environment variable, based on your deployment, for LDAP Policy Binding Settings.
+
+* LDAP Binding user Password
+
+```bash
+export TF_VAR_ldap_password="your_password"
+```
+
+### Local User Secure Variables
+
+Use the following environment variable, based on your deployment, for Local User Policy Users.  This would allow you to configure up to 5 unique users in an organization for CIMC Access.
+
+* Local user Password
+
+```bash
+export TF_VAR_local_user_password_1="your_password"
+export TF_VAR_local_user_password_2="your_password"
+export TF_VAR_local_user_password_3="your_password"
+export TF_VAR_local_user_password_4="your_password"
+export TF_VAR_local_user_password_5="your_password"
+```
+
+### Persistent Memory Secure Variables
+
+Use the following environment variable, based on your deployment, for Persistent Memory Encryption.
+
+* Persistent Memory Encryption Password
+
+```bash
+export TF_VAR_persistent_passphrase="your_password"
+```
+
+### SNMP Secure Variables
+
+Use the following environment variables, based on your deployment, for SNMP Settings.  There are 5 values for each variable type.  This allows for creating up to 5 snmp users or 5 community strings.  You only need to configure these variables if you want to use them.  For instance you want to add an SNMP user with AuthPriv.  You would configure snmp_auth_password_1 and snmp_privacy_password_1.  The rest can be unused unless you were going to configure 5 different SNMP users with different passwords.  The same holds true with community strings.
+
+* SNMP User Passwords
+
+```bash
+export TF_VAR_snmp_auth_password_1="your_password"
+export TF_VAR_snmp_auth_password_2="your_password"
+export TF_VAR_snmp_auth_password_3="your_password"
+export TF_VAR_snmp_auth_password_4="your_password"
+export TF_VAR_snmp_auth_password_5="your_password"
+export TF_VAR_snmp_privacy_password_1="your_password"
+export TF_VAR_snmp_privacy_password_2="your_password"
+export TF_VAR_snmp_privacy_password_3="your_password"
+export TF_VAR_snmp_privacy_password_4="your_password"
+export TF_VAR_snmp_privacy_password_5="your_password"
 ```
 
 * SNMP Communities
 
 ```bash
-export TF_VAR_snmp_community="your_community"
-export TF_VAR_trap_community="your_community"
+export TF_VAR_access_community_string_1="your_community"
+export TF_VAR_access_community_string_2="your_community"
+export TF_VAR_access_community_string_3="your_community"
+export TF_VAR_access_community_string_4="your_community"
+export TF_VAR_access_community_string_5="your_community"
+export TF_VAR_snmp_trap_community_1="your_community"
+export TF_VAR_snmp_trap_community_2="your_community"
+export TF_VAR_snmp_trap_community_3="your_community"
+export TF_VAR_snmp_trap_community_4="your_community"
+export TF_VAR_snmp_trap_community_5="your_community"
 ```
 
 ### Execute the Terraform Plan
@@ -232,7 +304,7 @@ No resources.
 | <a name="input_trap_community_string_4"></a> [trap\_community\_string\_4](#input\_trap\_community\_string\_4) | The default SNMPv1, SNMPv2c community name or SNMPv3 username to include on any trap messages sent to the SNMP host. The name can be 18 characters long. | `string` | `""` | no |
 | <a name="input_trap_community_string_5"></a> [trap\_community\_string\_5](#input\_trap\_community\_string\_5) | The default SNMPv1, SNMPv2c community name or SNMPv3 username to include on any trap messages sent to the SNMP host. The name can be 18 characters long. | `string` | `""` | no |
 | <a name="input_vcs_repo"></a> [vcs\_repo](#input\_vcs\_repo) | Version Control System Repository. | `string` | n/a | yes |
-| <a name="input_workspaces"></a> [workspaces](#input\_workspaces) | Map of Workspaces to create in Terraform Cloud.<br>key - Name of the Workspace to Create.<br>* description - A Description for the Workspace.<br>* working\_directory - The Directory of the Version Control Repository that contains the Terraform code for UCS Domain Profiles for this Workspace.<br>* workspace\_type - What Type of Workspace will this Create.  Options are:<br>  - chassis<br>  - domain<br>  - pool<br>  - server<br>  - vlan | <pre>map(object(<br>    {<br>      auto_apply        = optional(bool)<br>      description       = optional(string)<br>      working_directory = optional(string)<br>      workspace_type    = optional(string)<br>    }<br>  ))</pre> | <pre>{<br>  "default": {<br>    "auto_apply": true,<br>    "description": "",<br>    "working_directory": "modules/pools",<br>    "workspace_type": "pool"<br>  }<br>}</pre> | no |
+| <a name="input_workspaces"></a> [workspaces](#input\_workspaces) | Map of Workspaces to create in Terraform Cloud.<br>key - Name of the Workspace to Create.<br>* allow\_destroy\_plan - Default is true.<br>* auto\_apply - Defualt is false.  Automatically apply changes when a Terraform plan is successful. Plans that have no changes will not be applied. If this workspace is linked to version control, a push to the default branch of the linked repository will trigger a plan and apply.<br>* branch - Default is "master".  The repository branch that Terraform will execute from. Default to master.<br>* description - A Description for the Workspace.<br>* global\_remote\_state - Whether the workspace allows all workspaces in the organization to access its state data during runs. If false, then only specifically approved workspaces can access its state (remote\_state\_consumer\_ids)..<br>* queue\_all\_runs - needs description.<br>* remote\_state\_consumer\_ids - The set of workspace IDs set as explicit remote state consumers for the given workspace.<br>* working\_directory - The Directory of the Version Control Repository that contains the Terraform code for UCS Domain Profiles for this Workspace.<br>* workspace\_type - What Type of Workspace will this Create.  Options are:<br>  - chassis<br>  - domain<br>  - pool<br>  - server<br>  - vlan | <pre>map(object(<br>    {<br>      allow_destroy_plan        = optional(bool)<br>      auto_apply                = optional(bool)<br>      branch                    = optional(string)<br>      description               = optional(string)<br>      global_remote_state       = optional(bool)<br>      queue_all_runs            = optional(bool)<br>      remote_state_consumer_ids = optional(list(string))<br>      speculative_enabled       = optional(bool)<br>      working_directory         = string<br>      workspace_type            = string<br>    }<br>  ))</pre> | <pre>{<br>  "default": {<br>    "allow_destroy_plan": true,<br>    "auto_apply": false,<br>    "branch": "master",<br>    "description": "",<br>    "global_remote_state": false,<br>    "queue_all_runs": false,<br>    "remote_state_consumer_ids": [],<br>    "speculative_enabled": true,<br>    "working_directory": "",<br>    "workspace_type": ""<br>  }<br>}</pre> | no |
 
 ## Outputs
 
