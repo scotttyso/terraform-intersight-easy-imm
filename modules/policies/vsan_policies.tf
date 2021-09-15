@@ -94,6 +94,7 @@ module "vsan_policies_add_vsans" {
     local.org_moids,
     module.vsan_policies
   ]
+<<<<<<< HEAD
 <<<<<<< HEAD:modules/ucs_profiles/vsan_policies.tf
   source           = "terraform-cisco-modules/imm/intersight//modules/vsan_policy_add_vsan"
   for_each         = toset(keys({ for k, v in local.vsans : k => v }))
@@ -104,6 +105,9 @@ module "vsan_policies_add_vsans" {
   vsan_policy_moid = module.vsan_policies[local.vsans[each.value].vsan_policy].moid
 =======
   source           = "../../../terraform-intersight-imm/modules/vsan_policy_add_vsan"
+=======
+  source           = "terraform-cisco-modules/imm/intersight//modules/vsan_policy_add_vsan"
+>>>>>>> upstream/master
   for_each         = local.vsans
   default_zoning   = each.value.default_zoning
   fcoe_vlan_id     = each.value.fcoe_vlan_id
