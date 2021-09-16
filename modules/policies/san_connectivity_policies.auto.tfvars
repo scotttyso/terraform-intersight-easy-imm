@@ -49,7 +49,7 @@ san_connectivity_policies = {
     tags                 = []
     vhbas = {
       "SAN-A" = {
-        fibre_channel_adapter_policy = "Asgard_fc_Windows"
+        fibre_channel_adapter_policy = "Asgard_Windows"
         fibre_channel_network_policy = "Asgard_Fabric_A"
         fibre_channel_qos_policy     = "Asgard_fc_qos"
         name                         = "SAN-A"
@@ -60,7 +60,7 @@ san_connectivity_policies = {
         wwpn_pool                    = "Asgard_WWPN_Fabric_A"
       },
       "SAN-B" = {
-        fibre_channel_adapter_policy = "Asgard_fc_Windows"
+        fibre_channel_adapter_policy = "Asgard_Windows"
         fibre_channel_network_policy = "Asgard_Fabric_B"
         fibre_channel_qos_policy     = "Asgard_fc_qos"
         name                         = "SAN-B"
