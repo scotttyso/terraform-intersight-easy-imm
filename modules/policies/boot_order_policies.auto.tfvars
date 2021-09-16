@@ -5,11 +5,12 @@
 
 boot_policies = {
   "Uefi_M2" = {
-    boot_mode          = "Uefi"
-    enable_secure_boot = false
-    description        = "Uefi Secure Boot for M2 Drives"
-    organization       = "Asgard"
-    tags = []
+    boot_mode              = "Uefi"
+    bootloader_description = "OS"
+    enable_secure_boot     = false
+    description            = "Uefi Secure Boot for M2 Drives"
+    organization           = "Asgard"
+    tags                   = []
     boot_devices = {
       "KVM" = {
         enabled     = true
@@ -17,9 +18,12 @@ boot_policies = {
         Subtype     = "kvm-mapped-dvd"
       },
       "M2" = {
-        enabled     = true
-        object_type = "boot.LocalDisk"
-        Slot        = "MSTOR-RAID"
+        bootloader_description = "OS"
+        bootloader_name        = "BOOTX64.EFI"
+        bootloader_path        = "\\EFI\\BOOT\\"
+        enabled                = true
+        object_type            = "boot.LocalDisk"
+        Slot                   = "MSTOR-RAID"
       },
     }
   }
@@ -28,7 +32,7 @@ boot_policies = {
     enable_secure_boot = false
     description        = "Uefi Boot Order for Raid1"
     organization       = "Asgard"
-    tags = []
+    tags               = []
     boot_devices = {
       "KVM" = {
         enabled     = true
@@ -36,9 +40,12 @@ boot_policies = {
         Subtype     = "kvm-mapped-dvd"
       },
       "Raid1" = {
-        enabled     = true
-        object_type = "boot.LocalDisk"
-        Slot        = "MRAID"
+        bootloader_description = "OS"
+        bootloader_name        = "BOOTX64.EFI"
+        bootloader_path        = "\\EFI\\BOOT\\"
+        enabled                = true
+        object_type            = "boot.LocalDisk"
+        Slot                   = "MRAID"
       },
     }
   }
@@ -47,7 +54,7 @@ boot_policies = {
     enable_secure_boot = false
     description        = "Uefi Secure Boot for M2 Drives"
     organization       = "Asgard"
-    tags = []
+    tags               = []
     boot_devices = {
       "KVM" = {
         enabled     = true
@@ -55,10 +62,13 @@ boot_policies = {
         Subtype     = "kvm-mapped-dvd"
       },
       "SDCard" = {
-        enabled     = true
-        object_type = "boot.SdCard"
-        Lun         = 0
-        Subtype     = "SDCARD"
+        bootloader_description = "OS"
+        bootloader_name        = "BOOTX64.EFI"
+        bootloader_path        = "\\EFI\\BOOT\\"
+        enabled                = true
+        object_type            = "boot.SdCard"
+        Lun                    = 0
+        Subtype                = "SDCARD"
       },
     }
   }
