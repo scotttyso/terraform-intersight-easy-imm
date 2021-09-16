@@ -20,7 +20,7 @@ vlan_policies = {
         auto_allow_on_uplinks = true
         multicast_policy      = "Asgard_multicast",
         name                  = "Asgard",
-        vlan_list             = "1,100-299,1100,1102-1299,1700-1799",
+        vlan_list             = "1,101-299,1100,1102-1299,1700-1799",
       },
     }
   }
