@@ -3,8 +3,8 @@
 # Terraform Cloud Variables
 #__________________________________________________________
 
-tfc_organization = "Cisco-Richfield-Lab"
-ws_domain        = "Asgard_ucs_domain_profiles"
+tfc_organization       = "Cisco-Richfield-Lab"
+ws_ucs_domain_profiles = "Asgard_domain_profiles"
 
 #__________________________________________________________
 #
