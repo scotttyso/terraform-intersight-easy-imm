@@ -14,7 +14,7 @@ wwpn_pools = {
       }
     ]
   }
-  "Asgard_WWPN_Fabric_A" = {
+  "Asgard_WWPN_Fabric_B" = {
     assignment_order = "sequential"
     organization     = "Asgard"
     id_blocks = [
