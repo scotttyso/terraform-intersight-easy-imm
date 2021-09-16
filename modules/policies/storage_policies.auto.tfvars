@@ -13,6 +13,7 @@ storage_policies = {
     m2_configuration = {
       0 = {
         controller_slot = "MSTOR-RAID-1,MSTOR-RAID-2"
+        enable          = true
       }
     }
     single_drive_raid_configuration = {
