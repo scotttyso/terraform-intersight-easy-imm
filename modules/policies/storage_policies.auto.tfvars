@@ -23,7 +23,7 @@ storage_policies = {
           drive_slots   = "253,254"
           enable        = true
           read_policy   = "Default"
-          strip_size    = "Default"
+          strip_size    = 64
           write_policy  = "Default"
         }
     }
