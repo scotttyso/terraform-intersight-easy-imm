@@ -4,9 +4,9 @@
 #__________________________________________________________
 
 ucs_chassis_profiles = {
-  "asgard-chassis-1" = {
+  "asgard-ucs-1" = {
     action              = "No-op" # Options are {Delete|Deploy|Ready|No-op|Unassign}.
-    assign_chassis      = true
+    assign_chassis      = false
     description         = "Asgard Chassis Profile Example."
     imc_access_policy   = "Asgard_imc_access"
     organization        = "Asgard"

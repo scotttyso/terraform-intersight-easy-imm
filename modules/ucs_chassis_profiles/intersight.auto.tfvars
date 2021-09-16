@@ -6,9 +6,9 @@
 # agent_pool        = "Richfield_Agents"
 # terraform_version = "1.0.3"
 # tfc_email         = "tyscott@cisco.com"
-tfc_organization = "Cisco-Richfield-Lab"
+# tfc_organization = "Cisco-Richfield-Lab"
 # vcs_repo         = "scotttyso/terraform-intersight-easy-imm"
-ws_pools = "Asgard_pools"
+# ws_pools = "Asgard_pools"
 /*
   We highly recommend that for the terraform_cloud_token you use an environment variable for input:
   - export TF_VAR_terraform_cloud_token="abcdefghijklmnopqrstuvwxyz.0123456789"
