@@ -17,15 +17,15 @@ storage_policies = {
       }
     }
     single_drive_raid_configuration = {
-        M2 = {
-          access_policy = "Default"
-          drive_cache   = "Default"
-          drive_slots   = "253,254"
-          enable        = true
-          read_policy   = "Default"
-          strip_size    = 64
-          write_policy  = "Default"
-        }
+    #     M2 = {
+    #       access_policy = "Default"
+    #       drive_cache   = "Default"
+    #       drive_slots   = "253,254"
+    #       enable        = true
+    #       read_policy   = "Default"
+    #       strip_size    = 64
+    #       write_policy  = "Default"
+    #     }
     }
     tags = []
   }
