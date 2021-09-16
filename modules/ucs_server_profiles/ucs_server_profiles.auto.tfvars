@@ -12,6 +12,7 @@ ucs_server_profiles = {
     organization                = "Asgard"
     serial_number               = "FCH21427BUQ"
     sd_card_policy              = "Asgard_sdcard_m5"
+    storage_policy              = ""
     ucs_server_profile_template = "Asgard_Virtual_Template"
     tags                        = []
   }
