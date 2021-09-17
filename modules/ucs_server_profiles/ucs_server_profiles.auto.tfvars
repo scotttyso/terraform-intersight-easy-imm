@@ -22,7 +22,6 @@ ucs_server_profiles = {
     description                 = "Asgard Windows Server Profile - From Template."
     organization                = "Asgard"
     serial_number               = "FCH21427CHB"
-    target_platform             = "FIAttached"
     ucs_server_profile_template = "Asgard_Windows_Template"
     tags                        = []
   }
