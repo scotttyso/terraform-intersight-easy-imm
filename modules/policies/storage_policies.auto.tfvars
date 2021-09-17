@@ -19,10 +19,11 @@ storage_policies = {
     single_drive_raid_configuration = {}
   }
   "Raid1" = {
-    description        = "Raid1 Storage Configuration"
-    global_hot_spares  = ""
-    organization       = "Asgard"
-    unused_disks_state = "NoChange"
+    description              = "Raid1 Storage Configuration"
+    global_hot_spares        = ""
+    organization             = "Asgard"
+    unused_disks_state       = "NoChange"
+    use_jbod_for_vd_creation = true
     drive_group = {
       Raid1 = {
         manual_drive_group = {
