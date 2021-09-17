@@ -12,15 +12,15 @@ vlan_policies = {
       "native" = {
         auto_allow_on_uplinks = true
         multicast_policy      = "Asgard_multicast",
-        name                  = "Asgard_Prod_Mgmt",
-        native_vlan           = false
-        vlan_list             = "1101",
+        name                  = "default",
+        native_vlan           = true
+        vlan_list             = "1",
       },
       "list_1" = {
         auto_allow_on_uplinks = true
         multicast_policy      = "Asgard_multicast",
         name                  = "Asgard",
-        vlan_list             = "1,101-199,201-299,1100,1102-1299,1700-1799",
+        vlan_list             = "101-199,201-299,1100-1299,1700-1799",
       },
     }
   }
