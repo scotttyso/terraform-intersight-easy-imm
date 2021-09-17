@@ -13,7 +13,7 @@ vlan_policies = {
         auto_allow_on_uplinks = true
         multicast_policy      = "Asgard_multicast",
         name                  = "Asgard_Prod_Mgmt",
-        native_vlan           = true
+        native_vlan           = false
         vlan_list             = "1101",
       },
       "list_1" = {
