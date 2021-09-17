@@ -1,0 +1,73 @@
+# Accept the VMware End User License Agreement
+vmaccepteula
+
+# Set the root password for the DCUI and Tech Support Mode
+rootpw --iscrypted {{ .RootPassword }}
+
+#for Local boot
+DISKIDPLACEHOLDER
+
+# Set the network to use a static IP on the first network adapter
+{{if (eq .IpVersion "V4")}}
+    {{if (eq .IpConfigType "DHCP")}}network --bootproto=dhcp {{end}}
+    {{if (eq .IpConfigType "static")}}network --bootproto=static --ip={{ .IpAddress }} --netmask={{ .Netmask }} --gateway={{ .Gateway }} --hostname={{ .Hostname }} --nameserver={{ .NameServer }} {{end}}
+{{end}}
+
+%pre --interpreter=busybox
+hwclock -d %LIVE_VAR_DATE_1% -t %LIVE_VAR_TIME_UTC_1%
+date -s %LIVE_VAR_DATE_TIME_UTC_1%
+cd /tmp
+
+%firstboot --interpreter=busybox
+cd /tmp
+esxcfg-vswitch -A 'VM Network' vSwitch0
+
+###############################
+# enable & start remote ESXi Shell  (SSH)
+###############################
+vim-cmd hostsvc/enable_ssh
+vim-cmd hostsvc/start_ssh
+
+# enable & start remote ESXi Shell  (SSH)
+###############################
+vim-cmd hostsvc/enable_ssh
+vim-cmd hostsvc/start_ssh
+
+###############################
+# enable & start ESXi Shell (TSM)
+###############################
+vim-cmd hostsvc/enable_esx_shell
+vim-cmd hostsvc/start_esx_shell
+
+{{with .Hostname}}esxcli system hostname set --host={{.}}{{end}}
+{{if (eq .IpVersion "V6")}}
+{{if (eq .IpConfigType "static")}}
+esxcli network ip set --ipv6-enabled=true
+esxcli network ip interface ipv6 set -i vmk0 --enable-dhcpv6=false
+esxcli network ip interface ipv6 set -i vmk0 --enable-router-adv=false
+esxcli network ip interface ipv6 address add --interface-name=vmk0 --ipv6={{ .IpAddress }}/{{ .Prefix }}
+esxcli network ip interface ipv6 set -i vmk0 -g {{ .Gateway }}
+esxcli network ip interface ipv6 set -i vmk0 --enable-router-adv=true
+esxcli network ip dns server add -s {{ .NameServer}}
+{{end}}
+{{if (eq .IpConfigType "DHCP")}}
+esxcli network ip set --ipv6-enabled=false
+esxcli network ip interface ipv6 set -i vmk0 --enable-dhcpv6=true
+{{end}}
+{{end}}
+
+%post --interpreter=busybox --ignorefailure=true
+
+ESXI_INSTALL_LOG=/var/log/esxi_install.log
+echo \"OS INSTALL COMPLETED\" >>   /var/log/Xinstall.log
+/opt/ucs_tool_esxi/ucs_ipmitool write_file  /var/log/Xinstall.log osProgress.log
+
+cd /tmp
+localcli network firewall set --default-action true
+localcli network firewall set --enabled false
+
+localcli network firewall set --default-action false
+localcli network firewall set --enabled true
+
+# Let us poweroff/shutdown our selves.
+reboot

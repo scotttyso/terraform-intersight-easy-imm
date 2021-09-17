@@ -1,6 +1,7 @@
-# Local .terraform directories
+# Local directories
 **/.terraform/*
 **/.secret
+**/temp/*
 
 # .tfstate files
 *.tfstate

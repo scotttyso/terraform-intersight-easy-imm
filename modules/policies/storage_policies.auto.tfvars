@@ -16,18 +16,7 @@ storage_policies = {
         enable          = true
       }
     }
-    single_drive_raid_configuration = {
-    #     M2 = {
-    #       access_policy = "Default"
-    #       drive_cache   = "Default"
-    #       drive_slots   = "253,254"
-    #       enable        = true
-    #       read_policy   = "Default"
-    #       strip_size    = 64
-    #       write_policy  = "Default"
-    #     }
-    }
-    tags = []
+    single_drive_raid_configuration = {}
   }
   "Raid1" = {
     description        = "Raid1 Storage Configuration"
