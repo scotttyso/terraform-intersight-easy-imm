@@ -10,14 +10,40 @@ port_policies = {
     organization = "Asgard"
     port_channel_appliances = {}
     port_channel_ethernet_uplinks = {
-      "97" = {
+      105 = {
         admin_speed             = "Auto"
         flow_control_policy     = "Asgard_flowctrl"
         link_aggregation_policy = "Asgard_linkagg"
         link_control_policy     = "Asgard_linkctrl"
+        interfaces = [
+          {
+            port_id = 105
+            slot_id = 1
+          },
+          {
+            port_id = 107
+            slot_id = 1
+          }
+        ]
       }
     }
-    port_channel_fc_uplinks = {}
+    port_channel_fc_uplinks = {
+      1 = {
+        admin_speed  = "32Gbps"
+        fill_pattern = "Arbff"
+        interfaces = [
+          {
+            port_id          = 1
+            slot_id          = 1
+          },
+          {
+            port_id          = 3
+            slot_id          = 1
+          }
+        ]
+        vsan_id = 100
+      }
+    }
     port_channel_fcoe_uplinks = {}
     port_modes = [
       {
@@ -31,7 +57,7 @@ port_policies = {
     port_role_fcoe_uplinks = {}
     port_role_servers = {
       "0" = {
-        port_list = "5-18"
+        port_list = "7-8"
         slot_id   = 1
       }
     }
@@ -43,14 +69,40 @@ port_policies = {
     organization = "Asgard"
     port_channel_appliances = {}
     port_channel_ethernet_uplinks = {
-      "97" = {
+      105 = {
         admin_speed             = "Auto"
         flow_control_policy     = "Asgard_flowctrl"
         link_aggregation_policy = "Asgard_linkagg"
         link_control_policy     = "Asgard_linkctrl"
+        interfaces = [
+          {
+            port_id = 105
+            slot_id = 1
+          },
+          {
+            port_id = 107
+            slot_id = 1
+          }
+        ]
       }
     }
-    port_channel_fc_uplinks = {}
+    port_channel_fc_uplinks = {
+      1 = {
+        admin_speed  = "32Gbps"
+        fill_pattern = "Arbff"
+        interfaces = [
+          {
+            port_id          = 1
+            slot_id          = 1
+          },
+          {
+            port_id          = 3
+            slot_id          = 1
+          }
+        ]
+        vsan_id = 200
+      }
+    }
     port_channel_fcoe_uplinks = {}
     port_modes = [
       {
@@ -64,7 +116,7 @@ port_policies = {
     port_role_fcoe_uplinks = {}
     port_role_servers = {
       "0" = {
-        port_list = "5-18"
+        port_list = "7-8"
         slot_id   = 1
       }
     }
