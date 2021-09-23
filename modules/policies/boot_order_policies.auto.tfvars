@@ -6,7 +6,6 @@
 boot_policies = {
   "Uefi_M2" = {
     boot_mode              = "Uefi"
-    bootloader_description = "OS"
     enable_secure_boot     = false
     description            = "Uefi Secure Boot for M2 Drives"
     organization           = "Asgard"
