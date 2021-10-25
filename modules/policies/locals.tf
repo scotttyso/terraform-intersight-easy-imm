@@ -16,20 +16,20 @@ locals {
   tags = var.tags
 
   # Terraform Cloud Remote Resources - IP Pools
-  ip_pools   = data.terraform_remote_state.pools.outputs.ip_pools
-  iqn_pools  = data.terraform_remote_state.pools.outputs.iqn_pools
-  mac_pools  = data.terraform_remote_state.pools.outputs.mac_pools
-  uuid_pools = data.terraform_remote_state.pools.outputs.uuid_pools
-  wwnn_pools = data.terraform_remote_state.pools.outputs.wwnn_pools
-  wwpn_pools = data.terraform_remote_state.pools.outputs.wwpn_pools
+  ip_pools   = lookup(data.terraform_remote_state.pools.outputs, "ip_pools", {})
+  iqn_pools  = lookup(data.terraform_remote_state.pools.outputs, "iqn_pools", {})
+  mac_pools  = lookup(data.terraform_remote_state.pools.outputs, "mac_pools", {})
+  uuid_pools = lookup(data.terraform_remote_state.pools.outputs, "uuid_pools", {})
+  wwnn_pools = lookup(data.terraform_remote_state.pools.outputs, "wwnn_pools", {})
+  wwpn_pools = lookup(data.terraform_remote_state.pools.outputs, "wwpn_pools", {})
 
   # Terraform Cloud Remote Resources - Profiles
-  ucs_chassis_profiles = data.terraform_remote_state.ucs_chassis_profiles.outputs.ucs_chassis_profiles
-  ucs_chassis_moids    = data.terraform_remote_state.ucs_chassis_profiles.outputs.moids
-  ucs_domain_profiles  = data.terraform_remote_state.ucs_domain_profiles.outputs.ucs_domain_profiles
-  ucs_domain_moids     = data.terraform_remote_state.ucs_domain_profiles.outputs.moids
-  ucs_server_profiles  = data.terraform_remote_state.ucs_server_profiles.outputs.ucs_server_profiles
-  ucs_server_moids     = data.terraform_remote_state.ucs_server_profiles.outputs.moids
+  ucs_chassis_profiles = lookup(data.terraform_remote_state.ucs_chassis_profiles.outputs, "ucs_chassis_profiles", {})
+  ucs_chassis_moids    = lookup(data.terraform_remote_state.ucs_chassis_profiles.outputs, "moids", {})
+  ucs_domain_profiles  = lookup(data.terraform_remote_state.ucs_domain_profiles.outputs, "ucs_domain_profiles", {})
+  ucs_domain_moids     = lookup(data.terraform_remote_state.ucs_domain_profiles.outputs, "moids", {})
+  ucs_server_profiles  = lookup(data.terraform_remote_state.ucs_server_profiles.outputs, "ucs_server_profiles", {})
+  ucs_server_moids     = lookup(data.terraform_remote_state.ucs_server_profiles.outputs, "moids", {})
 
   #__________________________________________________________
   #
@@ -89,7 +89,7 @@ locals {
       lan_connectivity_policy       = ""
       ldap_policy                   = ""
       local_user_policy             = ""
-      network_connectivity_policy   = ""
+      network_connectivity_policy   = v.network_connectivity_policy != null ? v.network_connectivity_policy : ""
       ntp_policy                    = v.ntp_policy != null ? v.ntp_policy : ""
       persistent_memory_policy      = ""
       port_policy                   = v.port_policy != null ? v.port_policy : ""
@@ -98,11 +98,11 @@ locals {
       sd_card_policy                = ""
       serial_over_lan_policy        = ""
       smtp_policy                   = ""
-      snmp_policy                   = ""
+      snmp_policy                   = v.snmp_policy != null ? v.snmp_policy : ""
       ssh_policy                    = ""
       storage_policy                = ""
       switch_control_policy         = v.switch_control_policy != null ? v.switch_control_policy : ""
-      syslog_policy                 = ""
+      syslog_policy                 = v.syslog_policy != null ? v.syslog_policy : ""
       system_qos_policy             = v.system_qos_policy != null ? v.system_qos_policy : ""
       target_platform               = ""
       thermal_policy                = ""
@@ -118,7 +118,7 @@ locals {
       moid                          = local.ucs_server_moids[k]
       object_type                   = "server.Profile"
       organization                  = v.organization
-      adapter_policy                = v.adapter_policy != null ? v.adapter_policy : ""
+      adapter_configuration_policy  = v.adapter_configuration_policy != null ? v.adapter_configuration_policy : ""
       bios_policy                   = v.bios_policy != null ? v.bios_policy : ""
       boot_order_policy             = v.boot_order_policy != null ? v.boot_order_policy : ""
       certificate_management_policy = v.certificate_management_policy != null ? v.certificate_management_policy : ""
@@ -158,10 +158,31 @@ locals {
     local.ucs_server_policies,
   )
 
+  #_______________________________________________________________
+  #
+  # Adapter Configuration Policy
+  # GUI Location: Policies > Create Policy: Adapter Configuration
+  #_______________________________________________________________
+
+  adapter_configuration_policies = {
+    for k, v in var.adapter_configuration_policies : k => {
+      description         = v.description != null ? v.description : ""
+      enable_fip          = v.enable_fip != null ? v.enable_fip : true
+      enable_lldp         = v.enable_lldp != null ? v.enable_lldp : true
+      enable_port_channel = v.enable_port_channel != null ? v.enable_port_channel : true
+      fec_mode_1          = v.fec_mode_1 != null ? v.fec_mode_1 : "cl91"
+      fec_mode_2          = v.fec_mode_2 != null ? v.fec_mode_2 : "cl91"
+      fec_mode_3          = v.fec_mode_3 != null ? v.fec_mode_3 : "cl91"
+      fec_mode_4          = v.fec_mode_4 != null ? v.fec_mode_4 : "cl91"
+      organization        = v.organization != null ? v.organization : "default"
+      tags                = v.tags != null ? v.tags : []
+    }
+  }
+
 
   #____________________________________________________________
   #
-  # BIOS Policy - Custom BIOS Policy
+  # BIOS Policy
   # GUI Location: Policies > Create Policy: BIOS
   #____________________________________________________________
 
@@ -560,7 +581,7 @@ locals {
   #__________________________________________________________
 
   boot_order_policies = {
-    for k, v in var.boot_policies : k => {
+    for k, v in var.boot_order_policies : k => {
       boot_devices       = v.boot_devices != null ? v.boot_devices : {}
       boot_mode          = v.boot_mode != null ? v.boot_mode : "Uefi"
       description        = v.description != null ? v.description : ""
@@ -576,6 +597,7 @@ locals {
         additional_properties = v.boot_mode == "Uefi" && value.object_type == "boot.Iscsi" ? jsonencode(
           {
             Bootloader = {
+              ClassId     = "boot.Bootloader",
               Description = value.bootloader_description,
               Name        = value.bootloader_name,
               ObjectType  = "boot.Bootloader",
@@ -594,6 +616,7 @@ locals {
           ) : v.boot_mode == "Uefi" && value.object_type == "boot.LocalDisk" ? jsonencode(
           {
             Bootloader = {
+              ClassId     = "boot.Bootloader",
               Description = value.bootloader_description,
               Name        = value.bootloader_name,
               ObjectType  = "boot.Bootloader",
@@ -608,6 +631,7 @@ locals {
           ) : v.boot_mode == "Uefi" && value.object_type == "boot.Nvme" ? jsonencode(
           {
             Bootloader = {
+              ClassId     = "boot.Bootloader",
               Description = value.bootloader_description,
               Name        = value.bootloader_name,
               ObjectType  = "boot.Bootloader",
@@ -617,6 +641,7 @@ locals {
           ) : v.boot_mode == "Uefi" && value.object_type == "boot.PchStorage" ? jsonencode(
           {
             Bootloader = {
+              ClassId     = "boot.Bootloader",
               Description = value.bootloader_description,
               Name        = value.bootloader_name,
               ObjectType  = "boot.Bootloader",
@@ -644,6 +669,7 @@ locals {
           ) : v.boot_mode == "Uefi" && value.object_type == "boot.San" ? jsonencode(
           {
             Bootloader = {
+              ClassId     = "boot.Bootloader",
               Description = value.bootloader_description,
               Name        = value.bootloader_name,
               ObjectType  = "boot.Bootloader",
@@ -665,6 +691,7 @@ locals {
           ) : v.boot_mode == "Uefi" && value.object_type == "boot.SdCard" ? jsonencode(
           {
             Bootloader = {
+              ClassId     = "boot.Bootloader",
               Description = value.bootloader_description,
               Name        = value.bootloader_name,
               ObjectType  = "boot.Bootloader",
@@ -722,10 +749,10 @@ locals {
 
   device_connector_policies = {
     for k, v in var.device_connector_policies : k => {
-      description  = v.description != null ? v.description : ""
-      lockout      = v.lockout != null ? v.lockout : false
-      organization = v.organization != null ? v.organization : "default"
-      tags         = v.tags != null ? v.tags : []
+      description           = v.description != null ? v.description : ""
+      configuration_lockout = v.configuration_lockout != null ? v.configuration_lockout : false
+      organization          = v.organization != null ? v.organization : "default"
+      tags                  = v.tags != null ? v.tags : []
     }
   }
 
@@ -822,17 +849,17 @@ locals {
       roce_memory_regions = length(
         regexall("(MQ-SMBd)", coalesce(v.adapter_template, "EMPTY"))) > 0 ? 65536 : length(
         regexall("(Linux-NVMe-RoCE|SMBClient|SMBServer|Win-AzureStack|Win-HPN-SMBd)", coalesce(v.adapter_template, "EMPTY"))
-      ) > 0 ? 131072 : v.roce_memory_regions != null ? v.roce_memory_regions : 131072
+      ) > 0 ? 131072 : v.roce_memory_regions != null ? v.roce_memory_regions : v.roce_enable == true ? 131072 : 0
       roce_queue_pairs = length(
         regexall("(MQ-SMBd|SMBClient|Win-AzureStack|Win-HPN-SMBd)", coalesce(v.adapter_template, "EMPTY"))) > 0 ? 256 : length(
         regexall("(Linux-NVMe-RoCE)", coalesce(v.adapter_template, "EMPTY"))) > 0 ? 1024 : length(
         regexall("(SMBServer)", coalesce(v.adapter_template, "EMPTY"))
-      ) > 0 ? 2048 : v.roce_queue_pairs != null ? v.roce_queue_pairs : 256
+      ) > 0 ? 2048 : v.roce_queue_pairs != null ? v.roce_queue_pairs : v.roce_enable == true ? 256 : 0
       roce_resource_groups = length(
         regexall("(MQ-SMBd|Win-HPN-SMBd)", coalesce(v.adapter_template, "EMPTY"))) > 0 ? 2 : length(
         regexall("(Linux-NVMe-RoCE)", coalesce(v.adapter_template, "EMPTY"))) > 0 ? 8 : length(
         regexall("(SMBClient|SMBServer)", coalesce(v.adapter_template, "EMPTY"))
-      ) > 0 ? 32 : v.roce_resource_groups != null ? v.roce_resource_groups : 4
+      ) > 0 ? 32 : v.roce_resource_groups != null ? v.roce_resource_groups : v.roce_enable == true ? 4 : 0
       roce_version = length(
         regexall("(Linux-NVMe-RoCE|MQ-SMBd|Win-AzureStack|Win-HPN-SMBd)", coalesce(v.adapter_template, "EMPTY"))
       ) > 0 ? 2 : v.roce_version != null ? v.roce_version : 1
@@ -921,9 +948,25 @@ locals {
   # Ethernet Network Group Policy Section - Locals
   #__________________________________________________________
 
+  ethernet_network_policies = {
+    for k, v in var.ethernet_network_policies : k => {
+      allowed_vlans = v.allowed_vlans != null ? v.allowed_vlans : ""
+      description   = v.description != null ? v.description : ""
+      native_vlan   = v.native_vlan != null ? v.native_vlan : 0
+      organization  = v.organization != null ? v.organization : "default"
+      tags          = v.tags != null ? v.tags : []
+      vlan_mode     = v.vlan_mode != null ? v.vlan_mode : "ACCESS"
+    }
+  }
+
+  #__________________________________________________________
+  #
+  # Ethernet Network Group Policy Section - Locals
+  #__________________________________________________________
+
   ethernet_network_group_policies = {
     for k, v in var.ethernet_network_group_policies : k => {
-      allowed_vlans = v.allowed_vlans != null ? v.allowed_vlans : "auto"
+      allowed_vlans = v.allowed_vlans != null ? v.allowed_vlans : ""
       description   = v.description != null ? v.description : ""
       native_vlan   = v.native_vlan != null ? v.native_vlan : null
       organization  = v.organization != null ? v.organization : "default"
@@ -1149,56 +1192,61 @@ locals {
 
   ldap_policies = {
     for k, v in var.ldap_policies : k => {
-      description                     = v.description != null ? v.description : ""
-      ldap_attribute                  = v.ldap_attribute != null ? v.ldap_attribute : "CiscoAvPair"
-      ldap_base_dn                    = v.ldap_base_dn != null ? v.ldap_base_dn : "dc=example,dc=com"
-      ldap_bind_dn                    = v.ldap_bind_dn != null ? v.ldap_bind_dn : ""
-      ldap_bind_method                = v.ldap_bind_method != null ? v.ldap_bind_method : "LoginCredentials"
-      ldap_domain                     = v.ldap_domain != null ? v.ldap_domain : "example.com"
-      ldap_enable_dns                 = v.ldap_enable_dns != null ? v.ldap_enable_dns : false
-      ldap_enable_encryption          = v.ldap_enable_encryption != null ? v.ldap_enable_encryption : false
-      ldap_enable_group_authorization = v.ldap_enable_group_authorization != null ? v.ldap_enable_group_authorization : false
-      ldap_enabled                    = v.ldap_enabled != null ? v.ldap_enabled : true
-      ldap_filter                     = v.ldap_filter != null ? v.ldap_filter : "samAccountName"
-      ldap_group_attribute            = v.ldap_group_attribute != null ? v.ldap_group_attribute : "memberOf"
-      ldap_nested_group_search_depth  = v.ldap_nested_group_search_depth != null ? v.ldap_nested_group_search_depth : 128
-      ldap_nr_source                  = v.ldap_nr_source != null ? v.ldap_nr_source : "Extracted"
-      ldap_search_domain              = v.ldap_search_domain != null ? v.ldap_search_domain : ""
-      ldap_search_forest              = v.ldap_search_forest != null ? v.ldap_search_forest : ""
-      ldap_timeout                    = v.ldap_timeout != null ? v.ldap_timeout : 0
-      ldap_user_search_precedence     = v.ldap_user_search_precedence != null ? v.ldap_user_search_precedence : "LocalUserDb"
-      organization                    = v.organization != null ? v.organization : "default"
-      tags                            = v.tags != null ? v.tags : []
+      description = v.description != null ? v.description : ""
+      base_settings = {
+        base_dn = v.base_settings.base_dn
+        domain  = v.base_settings.domain
+        timeout = v.base_settings.timeout != null ? v.base_settings.timeout : 0
+      }
+      binding_parameters = {
+        bind_dn     = v.binding_parameters.bind_dn != null ? v.binding_parameters.bind_dn : ""
+        bind_method = v.binding_parameters.bind_method != null ? v.binding_parameters.bind_method : "LoginCredentials"
+      }
+      enable_encryption          = v.enable_encryption != null ? v.enable_encryption : false
+      enable_group_authorization = v.enable_group_authorization != null ? v.enable_group_authorization : false
+      enable_ldap                = v.enable_ldap != null ? v.enable_ldap : true
+      ldap_from_dns              = v.ldap_from_dns != null ? v.ldap_from_dns : {}
+      ldap_groups                = v.ldap_groups != null ? v.ldap_groups : {}
+      ldap_servers               = v.ldap_servers != null ? v.ldap_servers : {}
+      nested_group_search_depth  = v.nested_group_search_depth != null ? v.nested_group_search_depth : 128
+      organization               = v.organization != null ? v.organization : "default"
+      search_parameters = {
+        attribute       = v.search_parameters.attribute != null ? v.search_parameters.attribute : "CiscoAvPair"
+        filter          = v.search_parameters.filter != null ? v.search_parameters.filter : "samAccountName"
+        group_attribute = v.search_parameters.group_attribute != null ? v.search_parameters.group_attribute : "memberOf"
+      }
+      tags                   = []
+      user_search_precedence = v.user_search_precedence != null ? v.user_search_precedence : "LocalUserDb"
     }
   }
 
   ldap_server_loop = flatten([
     for k, v in var.ldap_policies : [
       for key, value in v.ldap_servers : {
-        ldap_port   = value.ldap_port != null ? value.ldap_port : 389
-        ldap_server = value.ldap_server != null ? value.ldap_server : 1
-        policy      = k
+        policy = k
+        port   = value.port != null ? value.port : 389
+        server = key
       }
     ]
   ])
 
   ldap_servers = {
-    for k, v in local.ldap_server_loop : "${v.policy}_${v.ldap_server}" => v
+    for k, v in local.ldap_server_loop : "${v.policy}_${v.server}" => v
   }
 
   ldap_group_loop = flatten([
     for k, v in var.ldap_policies : [
       for key, value in v.ldap_groups : {
-        group_role  = value.group_role != null ? value.group_role : "admin"
-        ldap_domain = v.ldap_domain != null ? v.ldap_domain : "example.com"
-        ldap_group  = key
-        policy      = k
+        domain = v.base_settings.domain
+        name   = key
+        policy = k
+        role   = value.role != null ? value.role : "admin"
       }
     ]
   ])
 
   ldap_groups = {
-    for k, v in local.ldap_group_loop : "${v.policy}_${v.ldap_group}" => v
+    for k, v in local.ldap_group_loop : "${v.policy}_${v.name}" => v
   }
 
 
@@ -1314,14 +1362,14 @@ locals {
 
   persistent_memory_policies = {
     for k, v in var.persistent_memory_policies : k => {
-      description                  = v.description != null ? v.description : ""
-      goals_memory_percentage      = v.goals_memory_percentage != null ? v.goals_memory_percentage : 0
-      goals_persistent_memory_type = v.goals_persistent_memory_type != null ? v.goals_persistent_memory_type : "app-direct"
-      logical_namespaces           = v.logical_namespaces != null ? v.logical_namespaces : []
-      management_mode              = v.management_mode != null ? v.management_mode : "configured-from-intersight"
-      organization                 = v.organization != null ? v.organization : "default"
-      retain_namespaces            = v.retain_namespaces != null ? v.retain_namespaces : true
-      tags                         = v.tags != null ? v.tags : []
+      description            = v.description != null ? v.description : ""
+      management_mode        = v.management_mode != null ? v.management_mode : "configured-from-intersight"
+      memory_mode_percentage = v.memory_mode_percentage != null ? v.memory_mode_percentage : 0
+      namespaces             = v.namespaces != null ? v.namespaces : {}
+      organization           = v.organization != null ? v.organization : "default"
+      persistent_memory_type = v.persistent_memory_type != null ? v.persistent_memory_type : "app-direct"
+      retain_namespaces      = v.retain_namespaces != null ? v.retain_namespaces : true
+      tags                   = v.tags != null ? v.tags : []
     }
   }
 
@@ -1709,15 +1757,15 @@ locals {
 
   smtp_policies = {
     for k, v in var.smtp_policies : k => {
-      description     = v.description != null ? v.description : ""
-      enabled         = v.enabled != null ? v.enabled : true
-      min_severity    = v.min_severity != null ? v.min_severity : "critical"
-      organization    = v.organization != null ? v.organization : "default"
-      sender_email    = v.sender_email != null ? v.sender_email : ""
-      smtp_port       = v.smtp_port != null ? v.smtp_port : 25
-      smtp_recipients = v.smtp_recipients != null ? v.smtp_recipients : []
-      smtp_server     = v.smtp_server != null ? v.smtp_server : ""
-      tags            = v.tags != null ? v.tags : []
+      description               = v.description != null ? v.description : ""
+      enable_smtp               = v.enable_smtp != null ? v.enable_smtp : true
+      mail_alert_recipients     = v.mail_alert_recipients != null ? v.mail_alert_recipients : []
+      minimum_severity          = v.minimum_severity != null ? v.minimum_severity : "critical"
+      organization              = v.organization != null ? v.organization : "default"
+      smtp_alert_sender_address = v.smtp_alert_sender_address != null ? v.smtp_alert_sender_address : ""
+      smtp_port                 = v.smtp_port != null ? v.smtp_port : 25
+      smtp_server_address       = v.smtp_server_address != null ? v.smtp_server_address : ""
+      tags                      = v.tags != null ? v.tags : []
     }
   }
 
@@ -1753,11 +1801,11 @@ locals {
   ssh_policies = {
     for k, v in var.ssh_policies : k => {
       description  = v.description != null ? v.description : ""
-      enabled      = v.enabled != null ? v.enabled : true
+      enable_ssh   = v.enable_ssh != null ? v.enable_ssh : true
       organization = v.organization != null ? v.organization : "default"
       ssh_port     = v.ssh_port != null ? v.ssh_port : 22
+      ssh_timeout  = v.ssh_timeout != null ? v.ssh_timeout : 1800
       tags         = v.tags != null ? v.tags : []
-      timeout      = v.timeout != null ? v.timeout : 1800
     }
   }
 
@@ -1950,12 +1998,12 @@ locals {
   virtual_media_policies = {
     for k, v in var.virtual_media_policies : k => {
       description                     = v.description != null ? v.description : ""
-      enabled                         = v.enabled != null ? v.enabled : true
       enable_low_power_usb            = v.enable_low_power_usb != null ? v.enable_low_power_usb : false
+      enable_virtual_media            = v.enable_virtual_media != null ? v.enable_virtual_media : true
       enable_virtual_media_encryption = v.enable_virtual_media_encryption != null ? v.enable_virtual_media_encryption : true
       organization                    = v.organization != null ? v.organization : "default"
       tags                            = v.tags != null ? v.tags : []
-      vmedia_mappings                 = v.vmedia_mappings != null ? v.vmedia_mappings : []
+      vmedia_mappings                 = v.vmedia_mappings != null ? v.vmedia_mappings : {}
     }
   }
 
