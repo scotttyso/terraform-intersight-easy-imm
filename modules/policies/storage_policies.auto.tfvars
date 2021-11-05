@@ -9,7 +9,7 @@ storage_policies = {
     global_hot_spares  = ""
     organization       = "Asgard"
     unused_disks_state = "NoChange"
-    drive_group = {}
+    drive_group        = {}
     m2_configuration = {
       0 = {
         controller_slot = "MSTOR-RAID-1,MSTOR-RAID-2"
@@ -52,6 +52,6 @@ storage_policies = {
     }
     m2_configuration                = {}
     single_drive_raid_configuration = {}
-    tags = []
+    tags                            = []
   }
 }

@@ -5,11 +5,11 @@
 
 boot_policies = {
   "Uefi_M2" = {
-    boot_mode              = "Uefi"
-    enable_secure_boot     = false
-    description            = "Uefi Secure Boot for M2 Drives"
-    organization           = "Asgard"
-    tags                   = []
+    boot_mode          = "Uefi"
+    enable_secure_boot = false
+    description        = "Uefi Secure Boot for M2 Drives"
+    organization       = "Asgard"
+    tags               = []
     boot_devices = {
       "KVM" = {
         enabled     = true

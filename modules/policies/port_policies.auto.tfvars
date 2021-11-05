@@ -5,9 +5,9 @@
 
 port_policies = {
   "Asgard_Fabric_A" = {
-    description  = ""
-    device_model = "UCS-FI-64108"
-    organization = "Asgard"
+    description             = ""
+    device_model            = "UCS-FI-64108"
+    organization            = "Asgard"
     port_channel_appliances = {}
     port_channel_ethernet_uplinks = {
       105 = {
@@ -33,12 +33,12 @@ port_policies = {
         fill_pattern = "Arbff"
         interfaces = [
           {
-            port_id          = 1
-            slot_id          = 1
+            port_id = 1
+            slot_id = 1
           },
           {
-            port_id          = 3
-            slot_id          = 1
+            port_id = 3
+            slot_id = 1
           }
         ]
         vsan_id = 100
@@ -51,10 +51,10 @@ port_policies = {
         slot_id   = 1
       }
     ]
-    port_role_appliances = {}
+    port_role_appliances       = {}
     port_role_ethernet_uplinks = {}
-    port_role_fc_uplinks = {}
-    port_role_fcoe_uplinks = {}
+    port_role_fc_uplinks       = {}
+    port_role_fcoe_uplinks     = {}
     port_role_servers = {
       "0" = {
         port_list = "7-8"
@@ -64,9 +64,9 @@ port_policies = {
     tags = []
   }
   "Asgard_Fabric_B" = {
-    description  = ""
-    device_model = "UCS-FI-64108"
-    organization = "Asgard"
+    description             = ""
+    device_model            = "UCS-FI-64108"
+    organization            = "Asgard"
     port_channel_appliances = {}
     port_channel_ethernet_uplinks = {
       105 = {
@@ -92,12 +92,12 @@ port_policies = {
         fill_pattern = "Arbff"
         interfaces = [
           {
-            port_id          = 1
-            slot_id          = 1
+            port_id = 1
+            slot_id = 1
           },
           {
-            port_id          = 3
-            slot_id          = 1
+            port_id = 3
+            slot_id = 1
           }
         ]
         vsan_id = 200
@@ -110,10 +110,10 @@ port_policies = {
         slot_id   = 1
       }
     ]
-    port_role_appliances = {}
+    port_role_appliances       = {}
     port_role_ethernet_uplinks = {}
-    port_role_fc_uplinks = {}
-    port_role_fcoe_uplinks = {}
+    port_role_fc_uplinks       = {}
+    port_role_fcoe_uplinks     = {}
     port_role_servers = {
       "0" = {
         port_list = "7-8"
