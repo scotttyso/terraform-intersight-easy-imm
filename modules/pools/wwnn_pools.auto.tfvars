@@ -4,15 +4,16 @@
 #______________________________________________
 
 wwnn_pools = {
-  "Asgard_WWNN" = {
+  "WWNNs" = {
     assignment_order = "sequential"
     organization     = "Asgard"
     pool_purpose     = "WWNN"
-    id_blocks = [
-      {
-        from = "20:00:00:25:B5:00:00:00"
-        to   = "20:00:00:25:B5:00:00:ff"
+    id_blocks = {
+      "0" = {
+        from = "20:00:00:25:B5:A5:00:00"
+        size = 256
+        # to   = "20:00:00:25:B5:A5:00:FF"
       }
-    ]
+    }
   }
 }

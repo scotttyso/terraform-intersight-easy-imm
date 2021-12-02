@@ -4,24 +4,26 @@
 #______________________________________________
 
 wwpn_pools = {
-  "Asgard_WWPN_Fabric_A" = {
+  "Fabric_A" = {
     assignment_order = "sequential"
     organization     = "Asgard"
-    id_blocks = [
-      {
-        from = "20:00:00:25:B5:0a:00:00"
-        to   = "20:00:00:25:B5:0a:00:ff"
+    id_blocks = {
+      "0" = {
+        from = "20:00:00:25:B5:A5:A0:00"
+        size = 256
+        # to   = "20:00:00:25:B5:A5:A0:FF"
       }
-    ]
+    }
   }
-  "Asgard_WWPN_Fabric_B" = {
+  "Fabric_B" = {
     assignment_order = "sequential"
     organization     = "Asgard"
-    id_blocks = [
-      {
-        from = "20:00:00:25:B5:0b:00:00"
-        to   = "20:00:00:25:B5:0b:00:ff"
+    id_blocks = {
+      "0" = {
+        from = "20:00:00:25:B5:A5:B0:00"
+        size = 256
+        # to   = "20:00:00:25:B5:A5:B0:FF"
       }
-    ]
+    }
   }
 }
