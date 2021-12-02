@@ -5,7 +5,7 @@
 
 san_connectivity_policies = {
   "Linux" = {
-    description          = "Asgard SAN Connectivity Policy - Linux"
+    description          = "SAN Connectivity Policy - Linux"
     organization         = "Asgard"
     target_platform      = "FIAttached"
     vhba_placement_mode  = "custom"
@@ -38,8 +38,8 @@ san_connectivity_policies = {
       },
     }
   }
-  "Virtualzation" = {
-    description          = "Asgard SAN Connectivity Policy - Virtualization"
+  "Virtualization" = {
+    description          = "SAN Connectivity Policy - Virtualization"
     organization         = "Asgard"
     target_platform      = "FIAttached"
     vhba_placement_mode  = "custom"
@@ -73,7 +73,7 @@ san_connectivity_policies = {
     }
   }
   "Windows" = {
-    description          = "Asgard SAN Connectivity Policy - Windows"
+    description          = "SAN Connectivity Policy - Windows"
     organization         = "Asgard"
     target_platform      = "FIAttached"
     vhba_placement_mode  = "custom"
