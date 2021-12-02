@@ -6,11 +6,11 @@
 ip_pools = {
   "IMC_pool" = {
     assignment_order = "sequential"
-    ipv4_block = {
+    ipv4_blocks = {
       "0" = {
         from = "10.92.101.96"
-        size = 32
-        # to   = "10.92.101.127"
+        # size = 32
+        to   = "10.92.101.127"
       },
     }
     ipv4_config = {
