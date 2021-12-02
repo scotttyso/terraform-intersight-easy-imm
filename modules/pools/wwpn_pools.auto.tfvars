@@ -4,7 +4,7 @@
 #______________________________________________
 
 wwpn_pools = {
-  "Fabric_A" = {
+  "HBA-A" = {
     assignment_order = "sequential"
     organization     = "Asgard"
     id_blocks = {
@@ -15,7 +15,7 @@ wwpn_pools = {
       }
     }
   }
-  "Fabric_B" = {
+  "HBA-B" = {
     assignment_order = "sequential"
     organization     = "Asgard"
     id_blocks = {
