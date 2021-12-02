@@ -6,23 +6,42 @@
 ucs_server_profiles = {
   "asgard-esxi01" = {
     action                      = "No-op"
-    assign_server               = true
-    boot_order_policy           = "Uefi_sdcard"
-    description                 = "Asgard esxi01 Server Profile."
+    boot_order_policy           = "Uefi_AHCI"
+    description                 = "asgard-esxi01.rich.ciscolabs.com"
+    organization                = "Asgard"
+    serial_number               = "FCH213271VU"
+    server_assignment_mode      = "Static"
+    storage_policy              = "Raid1"
+    ucs_server_profile_template = "Virtualization_Template"
+    tags                        = []
+  }
+  "asgard-esxi02" = {
+    action                      = "No-op"
+    boot_order_policy           = "Uefi_AHCI"
+    description                 = "asgard-esxi02.rich.ciscolabs.com"
+    organization                = "Asgard"
+    serial_number               = "FCH21427JDU"
+    server_assignment_mode      = "Static"
+    storage_policy              = "Raid1"
+    ucs_server_profile_template = "Virtualization_Template"
+    tags                        = []
+  }
+  "asgard-lnx01" = {
+    action                      = "No-op"
+    description                 = "asgard-lnx01.rich.ciscolabs.com"
     organization                = "Asgard"
     serial_number               = "FCH21427BUQ"
-    sd_card_policy              = "Asgard_sdcard_m5"
-    storage_policy              = ""
-    ucs_server_profile_template = "Asgard_Virtual_Template"
+    server_assignment_mode      = "Static"
+    ucs_server_profile_template = "Linux_Template"
     tags                        = []
   }
   "asgard-win01" = {
     action                      = "No-op"
-    assign_server               = true
-    description                 = "Asgard Windows Server Profile - From Template."
+    description                 = "asgard-win01.rich.ciscolabs.com"
     organization                = "Asgard"
     serial_number               = "FCH21427CHB"
-    ucs_server_profile_template = "Asgard_Windows_Template"
+    server_assignment_mode      = "Static"
+    ucs_server_profile_template = "Windows_Template"
     tags                        = []
   }
 }
