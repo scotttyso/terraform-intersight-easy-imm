@@ -4,8 +4,8 @@
 #______________________________________________
 
 multicast_policies = {
-  "Asgard_multicast" = {
-    description             = "Asgard Multicast Policy"
+  "MCAST" = {
+    description             = "Multicast Policy"
     organization            = "Asgard"
     querier_ip_address      = ""
     querier_ip_address_peer = ""
