@@ -17,7 +17,6 @@ variable "ucs_chassis_profiles" {
       thermal_policy      = ""
       description         = ""
       serial_number       = ""
-      src_template        = ""
       tags                = []
       wait_for_completion = false
     }
@@ -71,6 +70,7 @@ module "ucs_chassis_profiles" {
   depends_on = [
     local.org_moids
   ]
+  version             = ">=0.9.6"
   source              = "terraform-cisco-modules/imm/intersight//modules/ucs_chassis_profiles"
   for_each            = local.ucs_chassis_profiles
   action              = each.value.action
