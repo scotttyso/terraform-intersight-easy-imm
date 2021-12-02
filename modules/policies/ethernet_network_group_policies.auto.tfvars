@@ -4,33 +4,42 @@
 #______________________________________________
 
 ethernet_network_group_policies = {
-  "Asgard_MANAGEMENT_vg" = {
-    allowed_vlans = "1101"
-    description   = "Virtualization Management Vlan Group."
+  "ACI" = {
+    allowed_vlans = "101-199,201-299,1100-1299,1700-1799"
+    description   = "Virtualization Virtual Machine Vlan Group"
     organization  = "Asgard"
     tags          = []
   }
-  "Asgard_MIGRATION_vg" = {
-    allowed_vlans = "1102"
-    description   = "Virtualization Migration Vlan Group."
-    organization  = "Asgard"
-    tags          = []
-  }
-  "Asgard_STORAGE_vg" = {
-    allowed_vlans = "1103"
-    description   = "Virtualization Storage Vlan Group."
-    organization  = "Asgard"
-    tags          = []
-  }
-  "Asgard_Virtual_Machine_vg" = {
+  "ACI_Dynamic" = {
     allowed_vlans = "1700-1799"
-    description   = "Virtualization Virtual Machine Vlan Group."
+    description   = "Virtualization Virtual Machine Vlan Group"
     organization  = "Asgard"
     tags          = []
   }
-  "Asgard_Windows_vg" = {
+  "MGMT" = {
     allowed_vlans = "1101"
-    description   = "Windows Vlan Group."
+    description   = "MGMT Vlan Group"
+    native_vlan   = 1101
+    organization  = "Asgard"
+    tags          = []
+  }
+  "MIGRATION" = {
+    allowed_vlans = "1102"
+    description   = "Virtualization Migration Vlan Group"
+    native_vlan   = 1102
+    organization  = "Asgard"
+    tags          = []
+  }
+  "STORAGE" = {
+    allowed_vlans = "1103"
+    description   = "Virtualization Storage Vlan Group"
+    native_vlan   = 1103
+    organization  = "Asgard"
+    tags          = []
+  }
+  "v1101" = {
+    allowed_vlans = "1101"
+    description   = "VLAN 1101 Vlan Group"
     native_vlan   = 1101
     organization  = "Asgard"
     tags          = []

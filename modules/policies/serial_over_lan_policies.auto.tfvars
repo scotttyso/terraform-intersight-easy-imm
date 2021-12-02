@@ -4,10 +4,10 @@
 #______________________________________________
 
 serial_over_lan_policies = {
-  "Asgard_sol" = {
+  "Richfield" = {
     baud_rate    = 115200
     com_port     = "com0"
-    description  = "Asgard Serial over LAN Policy."
+    description  = "Richfield Serial over LAN Policy"
     enabled      = true
     organization = "Asgard"
     ssh_port     = 2400

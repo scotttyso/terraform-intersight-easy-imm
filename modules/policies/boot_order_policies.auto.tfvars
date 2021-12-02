@@ -3,7 +3,29 @@
 # Boot Order Policy Variables
 #______________________________________________
 
-boot_policies = {
+boot_order_policies = {
+  "Uefi_AHCI" = {
+    boot_mode          = "Uefi"
+    enable_secure_boot = false
+    description        = "Uefi Secure Boot for AHCI"
+    organization       = "Asgard"
+    tags               = []
+    boot_devices = {
+      "KVM" = {
+        enabled     = true
+        object_type = "boot.VirtualMedia"
+        Subtype     = "kvm-mapped-dvd"
+      },
+      "AHCI" = {
+        bootloader_description = "OS"
+        bootloader_name        = "BOOTX64.EFI"
+        bootloader_path        = "\\EFI\\BOOT\\"
+        enabled                = true
+        object_type            = "boot.LocalDisk"
+        Slot                   = "MSTOR-RAID-1"
+      },
+    }
+  }
   "Uefi_M2" = {
     boot_mode          = "Uefi"
     enable_secure_boot = false

@@ -4,7 +4,7 @@
 #______________________________________________
 
 flow_control_policies = {
-  "Asgard_flowctrl" = {
+  "flowctrl" = {
     description  = ""
     priority     = "auto"
     receive      = "Disabled"

@@ -4,7 +4,7 @@
 #______________________________________________
 
 ssh_policies = {
-  "Asgard_ssh" = {
+  "Richfield" = {
     description  = ""
     enabled      = true
     organization = "Asgard"

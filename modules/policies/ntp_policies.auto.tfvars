@@ -4,8 +4,8 @@
 #______________________________________________
 
 ntp_policies = {
-  "Asgard_ntp" = {
-    description  = "Asgard NTP Policy."
+  "Richfield" = {
+    description  = "Richfield NTP Policy"
     enabled      = true
     organization = "Asgard"
     tags         = []

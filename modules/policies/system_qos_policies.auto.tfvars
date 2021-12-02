@@ -4,7 +4,7 @@
 #______________________________________________
 
 system_qos_policies = {
-  "Asgard_system_qos" = {
+  "Richfield" = {
     classes = {
       "Bronze" = {
         bandwidth_percent  = 0
@@ -61,7 +61,7 @@ system_qos_policies = {
         weight             = 5
       },
     }
-    description  = "Asgard System QoS Policy."
+    description  = "Richfield System QoS Policy"
     organization = "Asgard"
     tags         = []
   }

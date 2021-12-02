@@ -4,40 +4,27 @@
 #______________________________________________
 
 virtual_media_policies = {
-  "Asgard_usb" = {
-    description                     = "Asgard USB vMedia Policy."
+  "USB_vMedia" = {
+    description                     = "USB vMedia Policy."
     enabled                         = true
     enable_low_power_usb            = true
     enable_virtual_media_encryption = false
     organization                    = "Asgard"
     tags                            = []
-    vmedia_mappings                 = []
+    vmedia_mappings                 = {}
   }
-  "Asgard_ESXI7.0" = {
-    description                     = "Asgard ESXi7.0 vMedia Policy."
+  "ESXI7" = {
+    description                     = "ESXi7 vMedia Policy."
     enable_low_power_usb            = false
     enable_virtual_media_encryption = false
     organization                    = "Asgard"
-    tags = [
-      {
-        key   = "easyucs_origin",
-        value = "convert",
+    tags = []
+    vmedia_mappings = {
+      "ESXI7" = {
+        device_type = "cdd"
+        file_location = "http://10.101.128.21/VMware_ESXi_7.0.2_17867351_Custom_Cisco_4.1.3_a.iso"
+        protocol    = "http"
       },
-      {
-        key   = "easyucs_version",
-        value = "0.9.8",
-      },
-    ]
-    vmedia_mounts = [
-      {
-        device_type = "cdd",
-        hostname    = "http.example.com",
-        name        = "ESXI7.0",
-        protocol    = "http",
-        remote_file = "customesxi.iso",
-        remote_path = "/",
-        username    = "root"
-      },
-    ]
+    }
   }
 }

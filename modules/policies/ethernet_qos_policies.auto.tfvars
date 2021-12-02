@@ -4,19 +4,9 @@
 #______________________________________________
 
 ethernet_qos_policies = {
-  "Asgard_MANAGEMENT_qos" = {
+  "Bronze" = {
     burst                 = 10240
-    description           = "Virtualization Managment Ethernet QoS."
-    enable_trust_host_cos = false
-    priority              = "Silver"
-    mtu                   = 9000
-    organization          = "Asgard"
-    rate_limit            = 0
-    tags                  = []
-  }
-  "Asgard_MIGRATION_qos" = {
-    burst                 = 10240
-    description           = "Virtualization Migration Ethernet QoS."
+    description           = "Bronze Priority QoS"
     enable_trust_host_cos = false
     priority              = "Bronze"
     mtu                   = 9000
@@ -24,9 +14,19 @@ ethernet_qos_policies = {
     rate_limit            = 0
     tags                  = []
   }
-  "Asgard_STORAGE_qos" = {
+  "Gold" = {
     burst                 = 10240
-    description           = "Virtualization Storage Ethernet QoS."
+    description           = "Gold Priority QoS"
+    enable_trust_host_cos = false
+    priority              = "Gold"
+    mtu                   = 9000
+    organization          = "Asgard"
+    rate_limit            = 0
+    tags                  = []
+  }
+  "Platinum" = {
+    burst                 = 10240
+    description           = "Platinum Priority QoS"
     enable_trust_host_cos = false
     priority              = "Platinum"
     mtu                   = 9000
@@ -34,21 +34,11 @@ ethernet_qos_policies = {
     rate_limit            = 0
     tags                  = []
   }
-  "Asgard_Virtual_Machine_qos" = {
+  "Silver" = {
     burst                 = 10240
-    description           = "Virtualization Virtual Machine Ethernet QoS."
+    description           = "Silver Priority QoS"
     enable_trust_host_cos = false
-    priority              = "Gold"
-    mtu                   = 9000
-    organization          = "Asgard"
-    rate_limit            = 0
-    tags                  = []
-  }
-  "Asgard_Windows_qos" = {
-    burst                 = 10240
-    description           = "Windows Ethernet QoS."
-    enable_trust_host_cos = false
-    priority              = "Gold"
+    priority              = "Silver"
     mtu                   = 9000
     organization          = "Asgard"
     rate_limit            = 0

@@ -4,9 +4,9 @@
 #______________________________________________
 
 local_user_policies = {
-  "Asgard_local_users" = {
+  "Richfield" = {
     always_send_user_password = false
-    description               = "Asgard Local User Policy"
+    description               = "Richfield Local User Policy"
     enable_password_expiry    = false
     enforce_strong_password   = true
     grace_period              = 0

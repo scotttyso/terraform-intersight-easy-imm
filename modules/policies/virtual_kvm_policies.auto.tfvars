@@ -4,7 +4,7 @@
 #______________________________________________
 
 virtual_kvm_policies = {
-  "Asgard_vkvm" = {
+  "Richfield" = {
     description               = ""
     enable_local_server_video = true
     enable_video_encryption   = false

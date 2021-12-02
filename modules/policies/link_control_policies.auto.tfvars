@@ -4,7 +4,7 @@
 #______________________________________________
 
 link_control_policies = {
-  "Asgard_linkctrl" = {
+  "linkctrl" = {
     admin_state  = "Enabled"
     description  = ""
     mode         = "normal"

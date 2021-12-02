@@ -4,7 +4,7 @@
 #______________________________________________
 
 storage_policies = {
-  "M2" = {
+  "M2-Raid1" = {
     description        = "M2 Storage Configuration"
     global_hot_spares  = ""
     organization       = "Asgard"

@@ -4,13 +4,19 @@
 #______________________________________________
 
 fibre_channel_adapter_policies = {
-  "Asgard_Virtualization" = {
+  "Linux" = {
+    adapter_template = "Linux"
+    description      = "Linux Adapter Policy"
+    organization     = "Asgard"
+    tags             = []
+  }
+  "Virtualization" = {
     adapter_template = "VMware"
     description      = "Virtualization Adapter Policy"
     organization     = "Asgard"
     tags             = []
   }
-  "Asgard_Windows" = {
+  "Windows" = {
     adapter_template = "Windows"
     description      = "Windows Adapter Policy"
     organization     = "Asgard"

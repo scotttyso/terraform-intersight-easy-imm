@@ -4,8 +4,8 @@
 #______________________________________________
 
 sd_card_policies = {
-  "Asgard_sdcard_m5" = {
-    description        = "Asgard Blade SD Card Policy"
+  "sdcard_m5" = {
+    description        = "Richfield Blade SD Card Policy"
     enable_diagnostics = false
     enable_drivers     = false
     enable_huu         = false

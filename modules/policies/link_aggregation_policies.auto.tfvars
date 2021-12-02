@@ -4,7 +4,7 @@
 #______________________________________________
 
 link_aggregation_policies = {
-  "Asgard_linkagg" = {
+  "linkagg" = {
     description        = ""
     lacp_rate          = "normal"
     organization       = "Asgard"

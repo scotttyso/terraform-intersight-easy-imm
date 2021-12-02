@@ -4,7 +4,7 @@
 #______________________________________________
 
 switch_control_policies = {
-  "Asgard_swctrl" = {
+  "swctrl" = {
     description                  = "Asgard Switch Control Policy."
     mac_address_table_aging      = "Custom"
     mac_aging_time               = 14500

@@ -4,17 +4,18 @@
 #______________________________________________
 
 port_policies = {
-  "Asgard_Fabric_A" = {
+  "asgard-ucs-a" = {
     description             = ""
     device_model            = "UCS-FI-64108"
     organization            = "Asgard"
     port_channel_appliances = {}
     port_channel_ethernet_uplinks = {
       105 = {
-        admin_speed             = "Auto"
-        flow_control_policy     = "Asgard_flowctrl"
-        link_aggregation_policy = "Asgard_linkagg"
-        link_control_policy     = "Asgard_linkctrl"
+        admin_speed                   = "Auto"
+        ethernet_network_group_policy = "ACI"
+        flow_control_policy           = "flowctrl"
+        link_aggregation_policy       = "linkagg"
+        link_control_policy           = "linkctrl"
         interfaces = [
           {
             port_id = 105
@@ -63,17 +64,18 @@ port_policies = {
     }
     tags = []
   }
-  "Asgard_Fabric_B" = {
+  "asgard-ucs-b" = {
     description             = ""
     device_model            = "UCS-FI-64108"
     organization            = "Asgard"
     port_channel_appliances = {}
     port_channel_ethernet_uplinks = {
       105 = {
-        admin_speed             = "Auto"
-        flow_control_policy     = "Asgard_flowctrl"
-        link_aggregation_policy = "Asgard_linkagg"
-        link_control_policy     = "Asgard_linkctrl"
+        admin_speed                   = "Auto"
+        ethernet_network_group_policy = "ACI"
+        flow_control_policy           = "flowctrl"
+        link_aggregation_policy       = "linkagg"
+        link_control_policy           = "linkctrl"
         interfaces = [
           {
             port_id = 105

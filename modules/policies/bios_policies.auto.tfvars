@@ -4,13 +4,13 @@
 #______________________________________________
 
 bios_policies = {
-  "Asgard_Virtualization" = {
+  "Virtualization" = {
     bios_template = "Virtualization"
     description   = "Virtualization - BIOS Performance Tuning Guide for Cisco UCS M5 Servers."
     organization  = "Asgard"
     tags          = []
   }
-  "Asgard_Windows" = {
+  "Windows" = {
     bios_template = ""
     description   = "Windows - Uses the Default BIOS Settings."
     organization  = "Asgard"

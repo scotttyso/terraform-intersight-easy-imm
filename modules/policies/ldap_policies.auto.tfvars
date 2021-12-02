@@ -1,5 +1,5 @@
 ldap_policies = {
-  "Asgard_ldap" = {
+  "Richfield" = {
     base_settings = {
       base_dn = "dc=rich,dc=ciscolabs,dc=com"
       domain  = "rich.ciscolabs.com"

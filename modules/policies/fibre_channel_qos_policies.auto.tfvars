@@ -4,9 +4,9 @@
 #______________________________________________
 
 fibre_channel_qos_policies = {
-  "Asgard_fc_qos" = {
+  "FC" = {
     burst               = 10240
-    description         = "Fibre Channel QoS Policy."
+    description         = "Fibre Channel QoS Policy"
     max_data_field_size = 2112
     organization        = "Asgard"
     rate_limit          = 0

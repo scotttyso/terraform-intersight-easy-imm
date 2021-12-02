@@ -4,27 +4,27 @@
 #______________________________________________
 
 power_policies = {
-  "Asgard_power_5108" = {
+  "5108" = {
     allocated_budget    = 0
-    description         = "Asgard 5108 Power Policy."
+    description         = "5108 Power Policy."
     organization        = "Asgard"
     power_profiling     = "Enabled"
     power_restore_state = "AlwaysOff"
     redundancy_mode     = "Grid"
     tags                = []
   }
-  "Asgard_power_9508" = {
+  "9508" = {
     allocated_budget    = 0
-    description         = "Asgard X-Series Power Policy."
+    description         = "X-Series Power Policy."
     organization        = "Asgard"
     power_profiling     = "Enabled"
     power_restore_state = "AlwaysOff"
     redundancy_mode     = "Grid"
     tags                = []
   }
-  "Asgard_power_server" = {
+  "Server" = {
     allocated_budget    = 0
-    description         = "Asgard Server Power Policy"
+    description         = "Server Power Policy"
     organization        = "Asgard"
     power_profiling     = "Enabled"
     power_restore_state = "LastState"
