@@ -6,7 +6,7 @@
 snmp_policies = {
   "Asgard" = {
     description            = "Asgard SNMP Policy"
-    enable_snmp            = false
+    enable_snmp            = true
     organization           = "Asgard"
     snmp_community_access  = "Full"
     snmp_engine_input_id   = ""
