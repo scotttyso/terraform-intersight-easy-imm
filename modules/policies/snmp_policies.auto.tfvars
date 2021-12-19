@@ -26,8 +26,22 @@ snmp_policies = {
     snmp_port              = 161
     system_contact         = "rich-lab@cisco.com"
     system_location        = "Richfield Lab Room 143 Rack D"
-    snmp_trap_destinations = {}
-    snmp_users             = {}
+    snmp_users             = {
+      "admin" = {
+        auth_password    = 1
+        auth_type        = "SHA"
+        privacy_password = 1
+        privacy_type     = "AES"
+        security_level   = "AuthPriv"
+      }
+    }
+    snmp_trap_destinations = {
+      "10.128.101.24" = {
+        enable           = true
+        trap_type        = "Trap"
+        user             = "admin"
+      }
+    }
     tags                   = []
   }
 }
