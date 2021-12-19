@@ -39,12 +39,12 @@ snmp_policies = {
       "10.128.101.24" = {
         enable           = true
         trap_type        = "Trap"
-        user             = "admin"
+        user             = "cisco_snmp"
       }
       "10.128.101.25" = {
         enable           = true
         trap_type        = "Trap"
-        user             = "admin"
+        user             = "cisco_snmp"
       }
     }
     tags                   = []
