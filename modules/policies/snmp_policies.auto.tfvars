@@ -19,7 +19,7 @@ snmp_policies = {
   }
   "Asgard_domain" = {
     description            = "Asgard SNMP Policy"
-    enable_snmp            = false
+    enable_snmp            = true
     organization           = "Asgard"
     snmp_community_access  = "Full"
     snmp_engine_input_id   = ""
@@ -37,6 +37,11 @@ snmp_policies = {
     }
     snmp_trap_destinations = {
       "10.128.101.24" = {
+        enable           = true
+        trap_type        = "Trap"
+        user             = "admin"
+      }
+      "10.128.101.25" = {
         enable           = true
         trap_type        = "Trap"
         user             = "admin"
