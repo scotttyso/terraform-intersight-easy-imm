@@ -6,7 +6,7 @@
 ucs_server_profiles = {
   "asgard-esxi01" = {
     action                      = "No-op"
-    boot_order_policy           = "Uefi_Raid1"
+    boot_order_policy           = "Uefi_M2"
     description                 = "asgard-esxi01.rich.ciscolabs.com"
     organization                = "Asgard"
     serial_number               = "FCH213271VU"
