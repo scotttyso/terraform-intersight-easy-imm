@@ -27,14 +27,14 @@ lan_connectivity_policies = {
     }
   }
   "Virtualization" = {
-    description         = "LAN Connectivity Policy - Virtualization"
+    description         = "LAN Connectivity Policy - VMware"
     organization        = "Asgard"
     vnic_placement_mode = "custom"
     target_platform     = "FIAttached"
     tags                = []
     vnics = {
       "MGMT-A" = {
-        ethernet_adapter_policy         = "Virtualization"
+        ethernet_adapter_policy         = "VMware"
         ethernet_network_control_policy = "lldp_enabled"
         ethernet_network_group_policy   = "MGMT"
         ethernet_qos_policy             = "Silver"
@@ -46,7 +46,7 @@ lan_connectivity_policies = {
         placement_switch_id             = "A"
       },
       "MGMT-B" = {
-        ethernet_adapter_policy         = "Virtualization"
+        ethernet_adapter_policy         = "VMware"
         ethernet_network_control_policy = "lldp_enabled"
         ethernet_network_group_policy   = "MGMT"
         ethernet_qos_policy             = "Silver"
@@ -58,7 +58,7 @@ lan_connectivity_policies = {
         placement_switch_id             = "B"
       },
       "MIGRATION-A" = {
-        ethernet_adapter_policy         = "Virtualization"
+        ethernet_adapter_policy         = "VMware"
         ethernet_network_control_policy = "lldp_enabled"
         ethernet_network_group_policy   = "MIGRATION"
         ethernet_qos_policy             = "Bronze"
@@ -70,7 +70,7 @@ lan_connectivity_policies = {
         placement_switch_id             = "A"
       },
       "MIGRATION-B" = {
-        ethernet_adapter_policy         = "Virtualization"
+        ethernet_adapter_policy         = "VMware"
         ethernet_network_control_policy = "lldp_enabled"
         ethernet_network_group_policy   = "MIGRATION"
         ethernet_qos_policy             = "Bronze"
@@ -82,7 +82,7 @@ lan_connectivity_policies = {
         placement_switch_id             = "B"
       },
       "STORAGE-A" = {
-        ethernet_adapter_policy         = "Virtualization"
+        ethernet_adapter_policy         = "VMware"
         ethernet_network_control_policy = "lldp_enabled"
         ethernet_network_group_policy   = "STORAGE"
         ethernet_qos_policy             = "Platinum"
@@ -94,7 +94,7 @@ lan_connectivity_policies = {
         placement_switch_id             = "A"
       },
       "STORAGE-B" = {
-        ethernet_adapter_policy         = "Virtualization"
+        ethernet_adapter_policy         = "VMware"
         ethernet_network_control_policy = "lldp_enabled"
         ethernet_network_group_policy   = "STORAGE"
         ethernet_qos_policy             = "Platinum"
@@ -106,7 +106,7 @@ lan_connectivity_policies = {
         placement_switch_id             = "B"
       },
       "DATA-A" = {
-        ethernet_adapter_policy         = "Virtualization"
+        ethernet_adapter_policy         = "VMware"
         ethernet_network_control_policy = "lldp_enabled"
         ethernet_network_group_policy   = "ACI_Dynamic"
         ethernet_qos_policy             = "Gold"
@@ -118,7 +118,7 @@ lan_connectivity_policies = {
         placement_switch_id             = "A"
       },
       "DATA-B" = {
-        ethernet_adapter_policy         = "Virtualization"
+        ethernet_adapter_policy         = "VMware"
         ethernet_network_control_policy = "lldp_enabled"
         ethernet_network_group_policy   = "ACI_Dynamic"
         ethernet_qos_policy             = "Gold"
