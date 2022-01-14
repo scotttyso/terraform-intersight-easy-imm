@@ -9,8 +9,8 @@ ethernet_adapter_policies = {
     organization     = "Asgard"
     tags             = []
   }
-  "Virtualization" = {
-    adapter_template = "VMWare"
+  "VMware" = {
+    adapter_template = "VMware"
     organization     = "Asgard"
     tags             = []
   }
