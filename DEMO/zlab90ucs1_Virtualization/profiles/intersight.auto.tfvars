@@ -3,9 +3,9 @@
 # Terraform Cloud Variables
 #__________________________________________________________
 
-tfc_organization        = "Cisco-Richfield-Lab"
-ws_pools                = "zlab90ucs1_Virtualization_pools"
-ws_policies             = "zlab90ucs1_Virtualization_policies"
+tfc_organization = "Cisco-Richfield-Lab"
+ws_pools         = "zlab90ucs1_Virtualization_pools"
+ws_policies      = "zlab90ucs1_Virtualization_policies"
 
 /*
   We highly recommend that for the terraform_cloud_token you use an environment variable for input:

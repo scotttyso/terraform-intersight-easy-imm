@@ -19,7 +19,7 @@ vlan_policies = {
     ]
     vlans = {
       "1" = {
-        auto_allow_on_uplinks = false
+        auto_allow_on_uplinks = true
         vlan_list             = "1",
         multicast_policy      = "default",
         name                  = "default",
