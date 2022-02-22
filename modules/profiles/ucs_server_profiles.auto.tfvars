@@ -39,8 +39,8 @@ ucs_server_profiles = {
     action                      = "No-op"
     description                 = "asgard-win01.rich.ciscolabs.com"
     organization                = "Asgard"
-    serial_number               = "FCH21427CHB"
-    server_assignment_mode      = "Static"
+    serial_number               = ""
+    server_assignment_mode      = "None"
     ucs_server_profile_template = "Windows_Template"
     tags                        = []
   }
