@@ -4,9 +4,9 @@
 #______________________________________________
 
 virtual_media_policies = {
-  "USB_vMedia" = {
+  "vMedia" = {
     description                     = "USB vMedia Policy."
-    enabled                         = true
+    enable_virtual_media            = true
     enable_low_power_usb            = true
     enable_virtual_media_encryption = false
     organization                    = "Asgard"
