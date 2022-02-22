@@ -16,16 +16,32 @@ locals {
   tags = var.tags
 
   # Terraform Cloud Remote Resources - IP Pools
-  ip_pools   = lookup(data.terraform_remote_state.pools.outputs, "ip_pools", {})
-  iqn_pools  = lookup(data.terraform_remote_state.pools.outputs, "iqn_pools", {})
-  mac_pools  = lookup(data.terraform_remote_state.pools.outputs, "mac_pools", {})
-  uuid_pools = lookup(data.terraform_remote_state.pools.outputs, "uuid_pools", {})
-  wwnn_pools = lookup(data.terraform_remote_state.pools.outputs, "wwnn_pools", {})
-  wwpn_pools = lookup(data.terraform_remote_state.pools.outputs, "wwpn_pools", {})
+  ip_pools = var.tfc_workspaces[0]["backend"] == "local" ? lookup(
+    data.terraform_remote_state.local_pools[0].outputs, "ip_pools", {}
+  ) : lookup(data.terraform_remote_state.remote_pools[0].outputs, "ip_pools", {})
+  iqn_pools = var.tfc_workspaces[0]["backend"] == "local" ? lookup(
+    data.terraform_remote_state.local_pools[0].outputs, "iqn_pools", {}
+  ) : lookup(data.terraform_remote_state.remote_pools[0].outputs, "iqn_pools", {})
+  mac_pools = var.tfc_workspaces[0]["backend"] == "local" ? lookup(
+    data.terraform_remote_state.local_pools[0].outputs, "mac_pools", {}
+  ) : lookup(data.terraform_remote_state.remote_pools[0].outputs, "mac_pools", {})
+  uuid_pools = var.tfc_workspaces[0]["backend"] == "local" ? lookup(
+    data.terraform_remote_state.local_pools[0].outputs, "uuid_pools", {}
+  ) : lookup(data.terraform_remote_state.remote_pools[0].outputs, "uuid_pools", {})
+  wwnn_pools = var.tfc_workspaces[0]["backend"] == "local" ? lookup(
+    data.terraform_remote_state.local_pools[0].outputs, "wwnn_pools", {}
+  ) : lookup(data.terraform_remote_state.remote_pools[0].outputs, "wwnn_pools", {})
+  wwpn_pools = var.tfc_workspaces[0]["backend"] == "local" ? lookup(
+    data.terraform_remote_state.local_pools[0].outputs, "wwpn_pools", {}
+  ) : lookup(data.terraform_remote_state.remote_pools[0].outputs, "wwpn_pools", {})
 
   # Terraform Cloud Remote Resources - Profiles
-  ucs_domain_profiles = lookup(data.terraform_remote_state.ucs_domain_profiles.outputs, "ucs_domain_profiles", {})
-  ucs_domain_moids    = lookup(data.terraform_remote_state.ucs_domain_profiles.outputs, "moids", {})
+  ucs_domain_profiles = var.tfc_workspaces[0]["backend"] == "local" ? lookup(
+    data.terraform_remote_state.local_domain_profiles[0].outputs, "ucs_domain_profiles", {}
+  ) : lookup(data.terraform_remote_state.remote_domain_profiles[0].outputs, "ucs_domain_profiles", {})
+  ucs_domain_moids = var.tfc_workspaces[0]["backend"] == "local" ? lookup(
+    data.terraform_remote_state.local_domain_profiles[0].outputs, "moids", {}
+  ) : lookup(data.terraform_remote_state.remote_domain_profiles[0].outputs, "moids", {})
 
   #__________________________________________________________
   #
@@ -565,9 +581,9 @@ locals {
               ) > 0 && value.InterfaceName != "" ? value.InterfaceSource : length(
               regexall("mac", value.InterfaceSource)
             ) > 0 && value.MacAddress != "" ? value.InterfaceSource : "port",
-            IpType     = value.IpType != "" ? value.IpType : "IPv4",
-            MacAddress = value.MacAddress,
-            Port       = value.Port,
+            IpType     = value.IpType != null && value.IpType != "" ? value.IpType : "IPv4",
+            MacAddress = value.MacAddress != null ? value.MacAddress : "",
+            Port       = value.Port != null ? value.Port : -1,
             Slot       = value.Slot != "" ? value.Slot : "MLOM"
           }
           ) : v.boot_mode == "Uefi" && value.object_type == "boot.San" ? jsonencode(
@@ -633,15 +649,15 @@ locals {
   }
 
   formatted_boot_order_policies = {
-    for k, v in local.boot_order_policies : k => {
+    for key, value in local.boot_order_policies : key => {
       boot_devices = {
-        for key, value in local.boot_devices_loop_2 : value.name => value if value.boot_order_policy == k
+        for k, v in local.boot_devices_loop_2 : v.name => v if v.boot_order_policy == key
       }
-      boot_mode          = v.boot_mode
-      description        = v.description
-      enable_secure_boot = v.enable_secure_boot
-      organization       = v.organization
-      tags               = v.tags
+      boot_mode          = value.boot_mode
+      description        = value.description
+      enable_secure_boot = value.enable_secure_boot
+      organization       = value.organization
+      tags               = value.tags
     }
   }
 
@@ -1024,6 +1040,7 @@ locals {
       ipv4_address_configuration = v.ipv4_address_configuration != null ? v.ipv4_address_configuration : true
       ipv6_address_configuration = v.ipv6_address_configuration != null ? v.ipv6_address_configuration : false
       organization               = v.organization != null ? v.organization : "default"
+      out_of_band_ip_pool        = v.out_of_band_ip_pool != null ? v.out_of_band_ip_pool : ""
       tags                       = v.tags != null ? v.tags : []
     }
   }
@@ -1933,13 +1950,16 @@ locals {
 
   power_policies = {
     for k, v in var.power_policies : k => {
-      allocated_budget    = v.allocated_budget != null ? v.allocated_budget : 0
-      description         = v.description != null ? v.description : ""
-      organization        = v.organization != null ? v.organization : "default"
-      power_profiling     = v.power_profiling != null ? v.power_profiling : "Enabled"
-      power_restore_state = v.power_restore_state != null ? v.power_restore_state : "LastState"
-      tags                = v.tags != null ? v.tags : []
-      redundancy_mode     = v.redundancy_mode != null ? v.redundancy_mode : "Grid"
+      description               = v.description != null ? v.description : ""
+      dynamic_power_rebalancing = v.dynamic_power_rebalancing != null ? v.dynamic_power_rebalancing : "Enabled"
+      organization              = v.organization != null ? v.organization : "default"
+      power_allocation          = v.power_allocation != null ? v.power_allocation : 0
+      power_priority            = v.power_priority != null ? v.power_priority : "Low"
+      power_profiling           = v.power_profiling != null ? v.power_profiling : "Enabled"
+      power_redunancy           = v.power_redunancy != null ? v.power_redunancy : "Grid"
+      power_restore             = v.power_restore != null ? v.power_restore : "AlwaysOff"
+      power_save_mode           = v.power_save_mode != null ? v.power_save_mode : "Enabled"
+      tags                      = v.tags != null ? v.tags : []
     }
   }
 
