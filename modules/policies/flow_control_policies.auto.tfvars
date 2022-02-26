@@ -5,11 +5,10 @@
 
 flow_control_policies = {
   "flowctrl" = {
-    description  = ""
-    priority     = "auto"
-    receive      = "Disabled"
-    send         = "Disabled"
-    organization = "Asgard"
-    tags         = []
+    description = ""
+    priority    = "auto"
+    receive     = "Disabled"
+    send        = "Disabled"
+    tags        = []
   }
 }

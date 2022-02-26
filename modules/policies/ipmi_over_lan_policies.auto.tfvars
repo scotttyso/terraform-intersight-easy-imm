@@ -5,11 +5,10 @@
 
 ipmi_over_lan_policies = {
   "Richfield" = {
-    description  = "Richfield IPMI over LAN Policy."
-    enabled      = true
-    ipmi_key     = null
-    privilege    = "admin"
-    organization = "Asgard"
-    tags         = []
+    description = "Richfield IPMI over LAN Policy."
+    enabled     = true
+    ipmi_key    = null
+    privilege   = "admin"
+    tags        = []
   }
 }

@@ -6,7 +6,6 @@
 wwpn_pools = {
   "HBA-A" = {
     assignment_order = "sequential"
-    organization     = "Asgard"
     id_blocks = {
       "0" = {
         from = "20:00:00:25:B5:A5:A0:00"
@@ -17,7 +16,6 @@ wwpn_pools = {
   }
   "HBA-B" = {
     assignment_order = "sequential"
-    organization     = "Asgard"
     id_blocks = {
       "0" = {
         from = "20:00:00:25:B5:A5:B0:00"

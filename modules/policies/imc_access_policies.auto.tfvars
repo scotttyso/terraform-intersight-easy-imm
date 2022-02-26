@@ -10,7 +10,6 @@ imc_access_policies = {
     inband_vlan_id             = 1101
     ipv4_address_configuration = true
     ipv6_address_configuration = false
-    organization               = "Asgard"
     tags                       = []
   }
 }

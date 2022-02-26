@@ -11,7 +11,6 @@ ethernet_network_control_policies = {
     lldp_enable_transmit = true
     mac_register_mode    = "allVlans"
     mac_security_forge   = "allow"
-    organization         = "Asgard"
     tags                 = []
   }
   "cdp_enabled" = {
@@ -21,7 +20,6 @@ ethernet_network_control_policies = {
     lldp_enable_transmit = false
     mac_register_mode    = "allVlans"
     mac_security_forge   = "allow"
-    organization         = "Asgard"
     tags                 = []
   }
   "lldp_enabled" = {
@@ -31,7 +29,6 @@ ethernet_network_control_policies = {
     lldp_enable_transmit = true
     mac_register_mode    = "allVlans"
     mac_security_forge   = "allow"
-    organization         = "Asgard"
     tags                 = []
   }
 }

@@ -35,7 +35,6 @@ ldap_policies = {
       }
     }
     # nested_group_search_depth = 128
-    organization      = "Asgard"
     search_parameters = {}
     # search_parameters = {
     #   attribute = "value"

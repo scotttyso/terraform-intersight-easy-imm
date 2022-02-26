@@ -10,7 +10,6 @@ ethernet_qos_policies = {
     enable_trust_host_cos = false
     priority              = "Bronze"
     mtu                   = 9000
-    organization          = "Asgard"
     rate_limit            = 0
     tags                  = []
   }
@@ -20,7 +19,6 @@ ethernet_qos_policies = {
     enable_trust_host_cos = false
     priority              = "Gold"
     mtu                   = 9000
-    organization          = "Asgard"
     rate_limit            = 0
     tags                  = []
   }
@@ -30,7 +28,6 @@ ethernet_qos_policies = {
     enable_trust_host_cos = false
     priority              = "Platinum"
     mtu                   = 9000
-    organization          = "Asgard"
     rate_limit            = 0
     tags                  = []
   }
@@ -40,7 +37,6 @@ ethernet_qos_policies = {
     enable_trust_host_cos = false
     priority              = "Silver"
     mtu                   = 9000
-    organization          = "Asgard"
     rate_limit            = 0
     tags                  = []
   }

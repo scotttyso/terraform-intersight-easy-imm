@@ -6,7 +6,6 @@
 lan_connectivity_policies = {
   "Linux" = {
     description         = "LAN Connectivity Policy - Linux"
-    organization        = "Asgard"
     vnic_placement_mode = "custom"
     target_platform     = "FIAttached"
     tags                = []
@@ -28,7 +27,6 @@ lan_connectivity_policies = {
   }
   "Virtualization" = {
     description         = "LAN Connectivity Policy - VMware"
-    organization        = "Asgard"
     vnic_placement_mode = "custom"
     target_platform     = "FIAttached"
     tags                = []
@@ -133,7 +131,6 @@ lan_connectivity_policies = {
   }
   "Windows" = {
     description         = "LAN Connectivity Policy - Windows"
-    organization        = "Asgard"
     vnic_placement_mode = "custom"
     target_platform     = "FIAttached"
     tags                = []

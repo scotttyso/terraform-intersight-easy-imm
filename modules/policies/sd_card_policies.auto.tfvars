@@ -11,7 +11,6 @@ sd_card_policies = {
     enable_huu         = false
     enable_os          = true
     enable_scu         = false
-    organization       = "Asgard"
     tags               = []
   }
 }

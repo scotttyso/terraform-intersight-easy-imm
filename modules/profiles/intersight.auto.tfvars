@@ -3,12 +3,12 @@
 # Terraform Cloud Variables
 #__________________________________________________________
 
-tfc_workspaces = [ {
-  backend = "remote"
+tfc_workspaces = [{
+  backend          = "remote"
   tfc_organization = "Cisco-Richfield-Lab"
-  ws_policies = "Asgard_policies"
-  ws_pools = "Asgard_pools"
-} ]
+  ws_policies      = "Asgard_policies"
+  ws_pools         = "Asgard_pools"
+}]
 
 /*
   We highly recommend that for the terraform_cloud_token you use an environment variable for input:
@@ -30,7 +30,7 @@ tfc_workspaces = [ {
 #__________________________________________________________
 
 # endpoint     = "https://intersight.com"
-organizations = ["Asgard"]
+organization = "Asgard"
 
 # secretkey    = "../../../../intersight.secret"
 /*

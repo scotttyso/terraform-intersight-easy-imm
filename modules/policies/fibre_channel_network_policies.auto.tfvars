@@ -5,15 +5,13 @@
 
 fibre_channel_network_policies = {
   "HBA-A" = {
-    description  = "HBA-A VSAN Network Policy"
-    organization = "Asgard"
-    vsan_id      = 100
-    tags         = []
+    description = "HBA-A VSAN Network Policy"
+    vsan_id     = 100
+    tags        = []
   }
   "HBA-B" = {
-    description  = "HBA-B VSAN Network Policy"
-    organization = "Asgard"
-    vsan_id      = 200
-    tags         = []
+    description = "HBA-B VSAN Network Policy"
+    vsan_id     = 200
+    tags        = []
   }
 }

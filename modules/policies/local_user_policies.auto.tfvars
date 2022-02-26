@@ -11,7 +11,6 @@ local_user_policies = {
     enforce_strong_password   = true
     grace_period              = 0
     notification_period       = 15
-    organization              = "Asgard"
     password_expiry_duration  = 90
     password_history          = 5
     tags                      = []

@@ -6,7 +6,6 @@
 san_connectivity_policies = {
   "Linux" = {
     description          = "SAN Connectivity Policy - Linux"
-    organization         = "Asgard"
     target_platform      = "FIAttached"
     vhba_placement_mode  = "custom"
     wwnn_allocation_type = "POOL"
@@ -40,7 +39,6 @@ san_connectivity_policies = {
   }
   "Virtualization" = {
     description          = "SAN Connectivity Policy - Virtualization"
-    organization         = "Asgard"
     target_platform      = "FIAttached"
     vhba_placement_mode  = "custom"
     wwnn_allocation_type = "POOL"
@@ -74,7 +72,6 @@ san_connectivity_policies = {
   }
   "Windows" = {
     description          = "SAN Connectivity Policy - Windows"
-    organization         = "Asgard"
     target_platform      = "FIAttached"
     vhba_placement_mode  = "custom"
     wwnn_allocation_type = "POOL"

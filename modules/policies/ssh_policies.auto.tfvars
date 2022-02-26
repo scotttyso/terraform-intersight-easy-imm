@@ -5,12 +5,11 @@
 
 ssh_policies = {
   "Richfield" = {
-    description  = ""
-    enabled      = true
-    organization = "Asgard"
-    ssh_port     = 22
-    tags         = []
-    timeout      = 1800
+    description = ""
+    enable_ssh  = true
+    ssh_port    = 22
+    tags        = []
+    ssh_timeout = 1800
   }
 }
 

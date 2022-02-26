@@ -14,7 +14,6 @@ uuid_pools = {
         # to   = "0000-0000000003E7"
       },
     }
-    organization     = "Asgard"
-    tags             = []
+    tags = []
   }
 }

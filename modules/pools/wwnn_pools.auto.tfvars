@@ -6,7 +6,6 @@
 wwnn_pools = {
   "WWNNs" = {
     assignment_order = "sequential"
-    organization     = "Asgard"
     pool_purpose     = "WWNN"
     id_blocks = {
       "0" = {

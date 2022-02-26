@@ -62,7 +62,6 @@ system_qos_policies = {
       },
     }
     description  = "Richfield System QoS Policy"
-    organization = "Asgard"
     tags         = []
   }
 }

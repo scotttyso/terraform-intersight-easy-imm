@@ -7,12 +7,11 @@ storage_policies = {
   "M2-Raid1" = {
     description        = "M2 Storage Configuration"
     global_hot_spares  = ""
-    organization       = "Asgard"
     unused_disks_state = "NoChange"
     drive_group        = {}
     m2_configuration = {
       0 = {
-        controller_slot = "MSTOR-RAID-1,MSTOR-RAID-2"
+        controller_slot = "MSTOR-RAID-1"
         enable          = true
       }
     }
@@ -21,7 +20,6 @@ storage_policies = {
   "Raid1" = {
     description              = "Raid1 Storage Configuration"
     global_hot_spares        = ""
-    organization             = "Asgard"
     unused_disks_state       = "NoChange"
     use_jbod_for_vd_creation = true
     drive_group = {

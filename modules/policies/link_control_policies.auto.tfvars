@@ -5,10 +5,9 @@
 
 link_control_policies = {
   "linkctrl" = {
-    admin_state  = "Enabled"
-    description  = ""
-    mode         = "normal"
-    organization = "Asgard"
-    tags         = []
+    admin_state = "Enabled"
+    description = ""
+    mode        = "normal"
+    tags        = []
   }
 }

@@ -6,7 +6,6 @@
 mac_pools = {
   "FAILOVER" = {
     assignment_order = "sequential"
-    organization     = "Asgard"
     mac_blocks = {
       "0" = {
         from = "00:25:B5:A5:00:00"
@@ -17,7 +16,6 @@ mac_pools = {
   }
   "DATA-A" = {
     assignment_order = "sequential"
-    organization     = "Asgard"
     mac_blocks = {
       "0" = {
         from = "00:25:B5:A5:10:00"
@@ -28,7 +26,6 @@ mac_pools = {
   }
   "DATA-B" = {
     assignment_order = "sequential"
-    organization     = "Asgard"
     mac_blocks = {
       "0" = {
         from = "00:25:B5:A5:20:00"
@@ -39,7 +36,6 @@ mac_pools = {
   }
   "MGMT-A" = {
     assignment_order = "sequential"
-    organization     = "Asgard"
     mac_blocks = {
       "0" = {
         from = "00:25:B5:A5:A0:00"
@@ -50,7 +46,6 @@ mac_pools = {
   }
   "MGMT-B" = {
     assignment_order = "sequential"
-    organization     = "Asgard"
     mac_blocks = {
       "0" = {
         from = "00:25:B5:A5:B0:00"
@@ -61,7 +56,6 @@ mac_pools = {
   }
   "MIGRATION-A" = {
     assignment_order = "sequential"
-    organization     = "Asgard"
     mac_blocks = {
       "0" = {
         from = "00:25:B5:A5:C0:00"
@@ -72,7 +66,6 @@ mac_pools = {
   }
   "MIGRATION-B" = {
     assignment_order = "sequential"
-    organization     = "Asgard"
     mac_blocks = {
       "0" = {
         from = "00:25:B5:A5:D0:00"
@@ -83,7 +76,6 @@ mac_pools = {
   }
   "STORAGE-A" = {
     assignment_order = "sequential"
-    organization     = "Asgard"
     mac_blocks = {
       "0" = {
         from = "00:25:B5:A5:E0:00"
@@ -94,7 +86,6 @@ mac_pools = {
   }
   "STORAGE-B" = {
     assignment_order = "sequential"
-    organization     = "Asgard"
     mac_blocks = {
       "0" = {
         from = "00:25:B5:A5:F0:00"

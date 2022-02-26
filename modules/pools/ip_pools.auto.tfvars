@@ -9,7 +9,7 @@ ip_pools = {
     ipv4_blocks = {
       "0" = {
         from = "10.92.101.96"
-        # size = 32
+        size = 32
         to   = "10.92.101.127"
       },
     }
@@ -21,9 +21,8 @@ ip_pools = {
         secondary_dns = "10.101.128.16"
       }
     }
-    ipv6_block   = []
-    ipv6_config  = {}
-    organization = "Asgard"
-    tags         = []
+    ipv6_block  = []
+    ipv6_config = {}
+    tags        = []
   }
 }
