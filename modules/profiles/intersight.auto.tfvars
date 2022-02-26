@@ -6,8 +6,8 @@
 tfc_workspaces = [{
   backend          = "remote"
   tfc_organization = "Cisco-Richfield-Lab"
-  ws_policies      = "Asgard_policies"
-  ws_pools         = "Asgard_pools"
+  policies_ws      = "Asgard_policies"
+  pools_ws         = "Asgard_pools"
 }]
 
 /*

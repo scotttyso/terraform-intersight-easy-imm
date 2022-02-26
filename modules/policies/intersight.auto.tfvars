@@ -4,10 +4,10 @@
 #__________________________________________________________
 
 tfc_workspaces = [{
-  backend                = "remote"
-  tfc_organization       = "Cisco-Richfield-Lab"
-  ws_pools               = "Asgard_pools"
-  ws_ucs_domain_profiles = "Asgard_domain_profiles"
+  backend            = "remote"
+  tfc_organization   = "Cisco-Richfield-Lab"
+  domain_profiles_ws = "Asgard_ucs_domain_profiles"
+  pools_ws           = "Asgard_pools"
 }]
 
 /*
