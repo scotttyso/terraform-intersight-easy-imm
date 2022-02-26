@@ -21,7 +21,6 @@ variable "ucs_server_profiles" {
       local_user_policy             = ""
       network_connectivity_policy   = ""
       ntp_policy                    = ""
-      organization                  = "default"
       persistent_memory_policy      = ""
       power_policy                  = ""
       resource_pool                 = ""
@@ -64,8 +63,6 @@ variable "ucs_server_profiles" {
   * local_user_policy - Name of the Local Users Policy to assign to the Profile.
   * network_connectivity_policy - Name of the Network Connectivity Policy to assign to the Profile.
   * ntp_policy - Name of the NTP Policy to assign to the Profile.
-  * organization - Name of the Intersight Organization to assign this Profile to.  Default is default.
-    -  https://intersight.com/an/settings/organizations/
   * persistent_memory_policy - Name of the Persistent Memory Policy to assign to the Profile.
   * power_policy - Name of the Power Policy to assign to the Profile.
   * resource_pool - Name of the Server Resource Pool to assign to the Policy.
@@ -110,7 +107,6 @@ variable "ucs_server_profiles" {
       network_connectivity_policy   = optional(string)
       ntp_policy                    = optional(string)
       operating_system              = optional(string)
-      organization                  = optional(string)
       persistent_memory_policy      = optional(string)
       power_policy                  = optional(string)
       resource_pool                 = optional(string)
@@ -144,7 +140,7 @@ variable "ucs_server_profiles" {
 
 resource "intersight_server_profile" "ucs_server_profiles" {
   depends_on = [
-    local.org_moids,
+    local.org_moid,
   ]
   for_each               = local.ucs_server_profiles
   action                 = each.value.action
@@ -159,7 +155,7 @@ resource "intersight_server_profile" "ucs_server_profiles" {
   ) > 0 ? "POOL" : each.value.static_uuid_address != "" ? "STATIC" : "NONE"
   wait_for_completion = each.value.wait_for_completion
   organization {
-    moid        = local.org_moids[each.value.organization].moid
+    moid        = local.org_moid
     object_type = "organization.Organization"
   }
   dynamic "assigned_server" {
