@@ -27,7 +27,7 @@ ucs_server_profile_templates = {
   }
   "Virtualization_Template" = {
     bios_policy                   = "Virtualization"
-    boot_order_policy             = "Uefi_M2"
+    boot_order_policy             = "VMware_Raid1"
     certificate_management_policy = ""
     description                   = "Virtualization Host Template"
     imc_access_policy             = "Asgard"
