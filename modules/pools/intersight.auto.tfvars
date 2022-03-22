@@ -23,4 +23,4 @@ organization = "Asgard"
 # Intersight Policy Variables
 #__________________________________________________________
 
-tags = [{ key = "Module", value = "terraform-intersight-easy-imm" }, { key = "Owner", value = "Admin" }]
+tags = [{ key = "Module", value = "terraform-intersight-easy-imm" }, { key = "Owner", value = "tyscott" }]
