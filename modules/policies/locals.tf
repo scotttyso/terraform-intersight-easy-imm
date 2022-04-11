@@ -9,7 +9,7 @@ locals {
     for k, v in var.tfc_workspaces : k => {
       backend             = v.backend
       tfc_organization    = v.tfc_organization != null ? v.tfc_organization : "default"
-      domain_profiles_dir = v.domain_profiles_dir != null ? v.domain_profiles_dir : "../policies/"
+      domain_profiles_dir = v.domain_profiles_dir != null ? v.domain_profiles_dir : "../ucs_domain_profiles/"
       domain_profiles_ws  = v.domain_profiles_ws != null ? v.domain_profiles_ws : "default_ucs_domain_profiles"
       pools_dir           = v.pools_dir != null ? v.pools_dir : "../pools/"
       pools_ws            = v.pools_ws != null ? v.pools_ws : "default_pools"
@@ -802,22 +802,30 @@ locals {
       ) > 0 ? 2 : v.roce_version != null ? v.roce_version : 1
       rss_enable_ipv4_hash = length(
         regexall("(DUMMY)", coalesce(v.adapter_template, "EMPTY"))
-      ) > 0 ? true : v.adapter_template != null ? true : v.rss_enable_ipv4_hash != null ? v.rss_enable_ipv4_hash : true
+        ) > 0 ? true : v.adapter_template != null ? true : v.rss_enable_ipv4_hash != null ? v.rss_enable_ipv4_hash : length(
+        regexall(true, coalesce(v.receive_side_scaling_enable, false))
+      ) > 0 ? true : false
       rss_enable_ipv6_extensions_hash = length(
         regexall("(DUMMY)", coalesce(v.adapter_template, "EMPTY"))
       ) > 0 ? false : v.adapter_template != null ? false : v.rss_enable_ipv6_extensions_hash != null ? v.rss_enable_ipv6_extensions_hash : false
       rss_enable_ipv6_hash = length(
         regexall("(DUMMY)", coalesce(v.adapter_template, "EMPTY"))
-      ) > 0 ? true : v.adapter_template != null ? true : v.rss_enable_ipv6_hash != null ? v.rss_enable_ipv6_hash : true
+        ) > 0 ? true : v.adapter_template != null ? true : v.rss_enable_ipv6_hash != null ? v.rss_enable_ipv6_hash : length(
+        regexall(true, coalesce(v.receive_side_scaling_enable, false))
+      ) > 0 ? true : false
       rss_enable_tcp_and_ipv4_hash = length(
         regexall("(DUMMY)", coalesce(v.adapter_template, "EMPTY"))
-      ) > 0 ? true : v.adapter_template != null ? true : v.rss_enable_tcp_and_ipv4_hash != null ? v.rss_enable_tcp_and_ipv4_hash : true
+        ) > 0 ? true : v.adapter_template != null ? true : v.rss_enable_tcp_and_ipv4_hash != null ? v.rss_enable_tcp_and_ipv4_hash : length(
+        regexall(true, coalesce(v.receive_side_scaling_enable, false))
+      ) > 0 ? true : false
       rss_enable_tcp_and_ipv6_extensions_hash = length(
         regexall("(DUMMY)", coalesce(v.adapter_template, "EMPTY"))
       ) > 0 ? false : v.adapter_template != null ? false : v.rss_enable_tcp_and_ipv6_extensions_hash != null ? v.rss_enable_tcp_and_ipv6_extensions_hash : false
       rss_enable_tcp_and_ipv6_hash = length(
         regexall("(DUMMY)", coalesce(v.adapter_template, "EMPTY"))
-      ) > 0 ? true : v.adapter_template != null ? true : v.rss_enable_tcp_and_ipv6_hash != null ? v.rss_enable_tcp_and_ipv6_hash : true
+        ) > 0 ? true : v.adapter_template != null ? true : v.rss_enable_tcp_and_ipv6_hash != null ? v.rss_enable_tcp_and_ipv6_hash : length(
+        regexall(true, coalesce(v.receive_side_scaling_enable, false))
+      ) > 0 ? true : false
       rss_enable_udp_and_ipv4_hash = length(
         regexall("(DUMMY)", coalesce(v.adapter_template, "EMPTY"))
       ) > 0 ? false : v.adapter_template != null ? false : v.rss_enable_udp_and_ipv4_hash != null ? v.rss_enable_udp_and_ipv4_hash : false
@@ -1103,7 +1111,7 @@ locals {
   ])
 
   vnics = {
-    for k, v in local.vnics_loop : k => v
+    for k, v in local.vnics_loop : "${v.lan_connectivity_policy}_${k}" => v
   }
 
 
@@ -1366,7 +1374,7 @@ locals {
   ])
 
   port_modes = {
-    for k, v in local.port_modes_loop : k => v
+    for k, v in local.port_modes_loop : "${v.port_policy}_${k}" => v
   }
 
   #__________________________________________________________
@@ -1981,7 +1989,7 @@ locals {
   ])
 
   vhbas = {
-    for k, v in local.vhbas_loop : k => v
+    for k, v in local.vhbas_loop : "${v.san_connectivity_policy}_${k}" => v
   }
 
   #__________________________________________________________
@@ -2211,6 +2219,7 @@ locals {
 
   virtual_kvm_policies = {
     for k, v in var.virtual_kvm_policies : k => {
+      allow_tunneled_vkvm       = v.allow_tunneled_vkvm != null ? v.allow_tunneled_vkvm : false
       description               = v.description != null ? v.description : ""
       enable_local_server_video = v.enable_local_server_video != null ? v.enable_local_server_video : true
       enable_video_encryption   = v.enable_video_encryption != null ? v.enable_video_encryption : false
